@@ -1,0 +1,1031 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learn & Grow Digital - Pakistan's First Digital Academy For Kids & Teens</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="icon" href="{% static 'images/favicon.png' %}" type="image/x-icon">
+
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <!-- Logo -->
+            <div class="nav-logo">
+                <div class="logo-icon">
+                    <img src="{% static 'images/dolphin.png' %}" alt="Learn & Grow Logo" class="logo-img" />
+                </div>
+                <span class="logo-text">Learn & Grow Digital</span>
+            </div>
+
+            <!-- Desktop Navigation -->
+            <div class="nav-menu">
+                <a href="#home" class="nav-link">Home</a>
+                <a href="#courses" class="nav-link">Courses</a>
+                <a href="#reviews" class="nav-link">Testimonials</a>
+                <a href="#about" class="nav-link">About us</a>
+                <a href="#contact" class="nav-link">Contact us</a>
+                <button class="btn-trial" onclick="openTrialModal()">Book a Free Trial</button>
+            </div>
+
+            <!-- Mobile menu button -->
+            <div class="mobile-menu-btn" onclick="toggleMobileMenu()">
+                <span class="hamburger"></span>
+                <span class="hamburger"></span>
+                <span class="hamburger"></span>
+            </div>
+        </div>
+
+        <!-- Mobile Navigation -->
+        <div class="mobile-menu" id="mobileMenu">
+            <a href="#home" class="mobile-nav-link">Home</a>
+            <a href="#courses" class="mobile-nav-link">Courses</a>
+            <a href="#reviews" class="mobile-nav-link">Testimonials</a>
+            <a href="#about" class="mobile-nav-link">About us</a>
+            <a href="#contact" class="mobile-nav-link">Contact us</a>
+            <button class="btn-trial mobile" onclick="openTrialModal()">Book a Free Trial</button>
+        </div>
+    </nav>
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-container">
+            <!-- Background decorative elements -->
+            <div class="bg-decorations">
+                <div class="decoration decoration-1"></div>
+                <div class="decoration decoration-2"></div>
+                <div class="decoration decoration-3"></div>
+                <div class="decoration decoration-4"></div>
+                <div class="decoration decoration-5"></div>
+                <div class="decoration decoration-6"></div>
+                <div class="decoration decoration-7"></div>
+                <div class="decoration decoration-8"></div>
+                <div class="decoration decoration-9"></div>
+            </div>
+            <div class="hero-content">
+                <!-- Left Content -->
+                <div class="hero-text">
+                    <h1 class="hero-title">
+                        A Global
+                        Digital<br> Academy <br>For
+                        <span class="text-orange">Kids & Teens</span>
+                    </h1>
+                    <p class="hero-description">
+                    Founded as Pakistan’s First online academy, Learn & Grow Digital now empowers children and teenagers<b> worldwide</b> with coding, game development, and digital skills.                    </p>
+                    <button class="btn-cta" onclick="openTrialModal()">Book a Free Trial</button>
+                </div>
+
+                <!-- Right Content - Illustration -->
+                <div class="hero-illustration">
+                    <div class="illustration-container">                        
+                        <img src="{% static 'images/Kids.png' %}" alt="Kids Learning Illustration" class="illustration-img" />
+                    </div>
+                    <div class="hollow-circle"></div>
+                </div>
+            </div>
+        </div>
+
+<div class="logo-strip">
+    <div class="logo-container">
+        <img src="{% static 'images/code-org.svg' %}" alt="Code.org Logo">
+        <img src="{% static 'images/python-logo.png' %}" alt="Python Logo">
+        <img src="{% static 'images/scratch.png' %}" alt="Scratch Logo">
+        <img src="{% static 'images/Hatch.png' %}" alt="HatchXR Logo">
+        <img src="{% static 'images/Html.png' %}" alt="HTML Logo">
+    </div>
+</div>
+
+    </div>
+    </section>
+    <!-- Why Coding Section -->
+    <section class="why-coding">
+    <div class="container">
+        <h2>Why Should Your Child Learn Coding?</h2>
+        
+        <div class="why-coding-content">
+            <div class="why-coding-story">
+                <div class="story-item">
+                    <div class="story-icon">
+                        <img src="{% static 'images/problem-solving.png' %}" alt="Problem Solving">
+                    </div>
+                    <div class="story-content">
+                        <h3>Sharper Problem-Solving</h3>
+                        <p>Kids learn to tackle challenges step by step with confidence.</p>
+                    </div>
+                </div>
+                
+                <div class="story-item">
+                    <div class="story-icon">
+                        <img src="{% static 'images/creativity.png' %}" alt="Creativity">
+                    </div>
+                    <div class="story-content">
+                        <h3>Spark Their Creativity</h3>
+                        <p>From fun games to cool apps, they can turn imagination into reality.</p>
+                    </div>
+                </div>
+                
+                <div class="story-item">
+                    <div class="story-icon">
+                        <img src="{% static 'images/future-career.png' %}" alt="Future Career">
+                    </div>
+                    <div class="story-content">
+                        <h3>Future-Ready Skills</h3>
+                        <p>Coding opens doors to the most in-demand careers of tomorrow.</p>
+                    </div>
+                </div>
+                
+                <div class="story-item">
+                    <div class="story-icon">
+                        <img src="{% static 'images/logical-thinking.png' %}" alt="Logical Thinking">
+                    </div>
+                    <div class="story-content">
+                        <h3>Boost in School</h3>
+                        <p>Improves focus, logical thinking, and even performance in math & science.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="why-coding-illustration">
+                <img src="{% static 'images/kid-illustration.png' %}" alt="Child Learning Coding" class="kid-illustration">
+                <div class="illustration-dots"></div>
+            </div>
+        </div>
+        
+        <div class="stats-section">
+            <div class="stat-item">
+                <h4>70%</h4>
+                <p>STEM jobs are in computing</p>
+            </div>
+            <div class="stat-item">
+                <h4>5x</h4>
+                <p>Coding jobs grow faster than average</p>
+            </div>
+            <div class="stat-item">
+                <h4>91%</h4>
+                <p>Parents want coding in schools</p>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Decorative elements -->
+    <div class="bg-decorations">
+        <div class="decoration decoration-1"></div>
+        <div class="decoration decoration-2"></div>
+        <div class="decoration decoration-3"></div>
+    </div>
+    </section>
+    <!-- Courses Section -->
+    <section class="courses" id="courses">
+        <div class="courses-container">
+            <div class="courses-decor">
+                <div class="course-decoration decoration-20"></div>
+                <div class="course-decoration decoration-21"></div>
+            </div>
+            <div class="courses-header">
+                <h2 class="courses-title">Our Courses</h2>
+                <p class="courses-subtitle">
+                    Empowering young minds with fun, interactive, and future-ready skills.
+                </p>
+            </div>
+
+            <!-- Swiper Carousel Start -->
+    <!-- Swiper Carousel Start -->
+        <div class="swiper myCoursesSwiper">
+        <div class="swiper-wrapper">
+            {% for course in courses %}
+            <div class="swiper-slide">
+              <div class="course-card" 
+         data-id="{{ course.id }}"
+         data-title="{{ course.title }}"
+         data-tagline="{{ course.tagline }}"
+         data-description="{{ course.description }}"
+         data-duration="{{ course.duration }}"
+         data-learnings="{{ course.get_learnings_list|join:', ' }}"
+         data-requirements="{{ course.get_requirements_list|join:', ' }}"
+         data-projects="{% for project in course.projects.all %}{{ project.name }}||{{ project.image.url|default:'' }}||{{ project.url|default:'' }}{% if not forloop.last %}@@{% endif %}{% endfor %}">    <!-- Info Icon (Top-Right Corner) -->
+
+        <div class="course-image">
+            <img src="{{ course.image.url }}" alt="{{ course.title }}">
+        </div>
+
+        <div class="course-content">
+            <div class="coursecard-header">
+                <div class="course-category">
+                    {% if course.category %}
+                        {{ course.category.name }}
+                    {% else %}
+                        Uncategorized
+                    {% endif %}
+                </div>                
+                <div class="course-rating">
+                <div class="stars">
+                    {% with full=course.rating|floatformat:1|slice:":1" %}
+                        {% for i in "12345" %}
+                            {% if forloop.counter <= course.rating %}
+                                <span class="star filled"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16">
+                                    <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                                    </svg>
+                                </span>
+                            {% elif forloop.counter == course.rating|add:"1" and course.rating|floatformat:1|slice:"-1:" == "5" %}
+                                <span class="star half"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star-half" viewBox="0 0 16 16">
+                                    <path d="M5.354 5.119 7.538.792A.52.52 0 0 1 8 .5c.183 0 .366.097.465.292l2.184 4.327 4.898.696A.54.54 0 0 1 16 6.32a.55.55 0 0 1-.17.445l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256a.5.5 0 0 1-.146.05c-.342.06-.668-.254-.6-.642l.83-4.73L.173 6.765a.55.55 0 0 1-.172-.403.6.6 0 0 1 .085-.302.51.51 0 0 1 .37-.245zM8 12.027a.5.5 0 0 1 .232.056l3.686 1.894-.694-3.957a.56.56 0 0 1 .162-.505l2.907-2.77-4.052-.576a.53.53 0 0 1-.393-.288L8.001 2.223 8 2.226z"/>
+                                    </svg>
+                                </span>
+                            {% else %}
+                                <span class="star"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star" viewBox="0 0 16 16">
+                                    <path d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.56.56 0 0 0-.163-.505L1.71 6.745l4.052-.576a.53.53 0 0 0 .393-.288L8 2.223l1.847 3.658a.53.53 0 0 0 .393.288l4.052.575-2.906 2.77a.56.56 0 0 0-.163.506l.694 3.957-3.686-1.894a.5.5 0 0 0-.461 0z"/>
+                                    </svg>
+                                </span>
+                            {% endif %}
+                        {% endfor %}
+                    {% endwith %}
+                </div>
+                </div>
+            </div>
+            <h3 class="course-title">{{ course.title }}</h3>
+            <div class="course-info">
+                <div class="info-item">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="10"/>
+                        <polyline points="12,6 12,12 16,14"/>
+                    </svg>
+                    <span>{{ course.duration }}</span>
+                </div>
+                <div class="info-item">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/>
+                        <circle cx="9" cy="7" r="4"/>
+                        <path d="M22 21v-2a4 4 0 0 0-3-3.87"/>
+                        <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                    </svg>
+                    <span>{{ course.enrollments }}+ Enrollments</span>
+                </div>
+                <div class="info-item">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" 
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="6" r="4"></circle>
+                        <path d="M6 22v-4a6 6 0 0 1 12 0v4"></path>
+                    </svg>
+                    <span>{{ course.age_range }}</span>
+                </div>
+            </div>
+            <button 
+                class="view-details-btn" 
+                data-course-id="{{ course.id }}" 
+                data-course-title="{{ course.title }}">
+                View Details
+            </button>
+        </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <!-- Pagination -->
+        <div class="courses-pagination"></div>
+        </div>
+            <!-- Swiper Carousel End -->
+        </div>
+    </section>
+    <!-- Student Projects Section -->
+    <section class="student-projects">
+    <div class="container">
+        <h2>Projects By Our Young Coders</h2>
+        <p class="section-subtitle">See what our students have created using the skills they learned at our academy</p>
+        
+        <div class="projects-filter">
+            <button class="filter-btn active" data-filter="all">All Projects</button>
+            <button class="filter-btn" data-filter="games">Games</button>
+            <button class="filter-btn" data-filter="websites">Websites</button>
+            <button class="filter-btn" data-filter="apps">Apps</button>
+            <button class="filter-btn" data-filter="animations">Animations</button>
+        </div>
+        
+        <div class="projects-grid">
+            {% for project in featured_projects %}
+            <div class="project-card" data-category="{{ project.category }}">
+                <div class="project-image">
+                    <img src="{{ project.image.url }}" alt="{{ project.title }}">
+                    <div class="project-overlay">
+                        <a href="{{ project.demo_url }}" class="project-link" target="_blank">View Demo</a>
+                    </div>
+                </div>
+                <div class="project-info">
+                    <h3>{{ project.title }}</h3>
+                    <p class="project-author">By {{ project.student_name }}, Age {{ project.student_age }}</p>
+                    <p class="project-description">{{ project.description }}</p>
+                    <div class="project-tools">
+                        <span>Made with: {{ project.tools_used }}</span>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <div class="no-projects-msg" style="display: none; text-align: center; color: #666; font-size: 1rem; margin-top: 20px;">
+            No projects to show.
+        </div>
+
+        <div class="view-more-container">
+            <button class="view-more-btn">View More</button>
+        </div>
+    </div>
+    </section>
+    <!-- Learning Section -->
+    <section class="learning">
+        <div class="bg-decorations">
+            <div class="learn-bg decoration-10"></div>
+            <div class="learn-bg decoration-11"></div>
+            <div class="learn-bg decoration-12"></div>
+            <div class="learn-bg decoration-13"></div>
+            <div class="learn-bg decoration-14"></div>
+            <div class="learn-bg decoration-15"></div>
+        </div>
+        <div class="learning-container">
+            <div class="learning-content">
+                <div class="learning-illustration">
+                    <div class="learning-illustration-container">                        
+                        <img src="{% static 'images/kiddy.png' %}" alt="Kids Learning Illustration" class="learning-illustration-img" />
+                    </div>
+                </div>
+                <div class="L-text">
+                    <h1 class="L-title">
+                        Premium <span class="text-orange">Learning</span><br>
+                        Experience<br>
+                    </h1>
+
+                    <div class="learning-card">
+                        <div class="learning-icon">
+                            <img src="{% static 'images/certificate.png' %}" alt="Learning Icon">
+                        </div>
+                        <div class="learning-text">
+                            <h3 class="learning-title">Certificate of Achievement</h3>
+                            <p class="learning-description">Kids earn recognized certificates after completing each course level.</p>
+                        </div>
+                    </div>
+                    <div class="learning-card">
+                        <div class="learning-icon">
+                            <img src="{% static 'images/confidence.png' %}" alt="Learning Icon">
+                        </div>
+                        <div class="learning-text">
+                            <h3 class="learning-title">Progress Tracking for Parents</h3>
+                            <p class="learning-description"> Get regular updates and reports on your child’s learning journey.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </section>
+    <!-- Reviews Section -->
+    <section class="reviews" id="reviews">
+        <div class="reviews-container">
+
+            <div class="reviews-header">
+                <h2 class="reviews-title">What Our Students Say</h2>
+                <p class="reviews-subtitle">Here's what our young learners and their parents love about Learn & Grow Digital</p>
+            </div>
+
+   <!-- Swiper Carousel Start -->
+    <div class="swiper reviewsSwiper">
+        <div class="swiper-wrapper">
+            {% for review in reviews %}
+            <div class="swiper-slide">
+                <div class="testimonial-card">
+                    <p class="testimonial-text">
+                        "{{ review.text }}"
+                    </p>
+                    <div class="testimonial-user">
+                        {% if review.image %}
+                        <img src="{{ review.image.url }}" alt="{{ review.author }} Photo">
+                        {% else %}
+                        <img src="{% static 'images/default-user.png' %}" alt="Default User Photo">
+                        {% endif %}
+                        <div class="user-info">
+                            <h4>{{ review.author }}{% if review.age %}, Age {{ review.age }}{% endif %}</h4>
+                            {% if review.role %}<span>{{ review.role }}</span>{% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <!-- Pagination -->
+        <div class="reviews-pagination"></div>
+            <div class="courses-decor">
+                <div class="course-decoration decoration-22"></div>
+                <div class="course-decoration decoration-23"></div>
+            </div>
+    </div>
+    </section>
+    <!-- Teachers Section -->
+<!-- Teachers Section -->
+    <section class="Team" id="team">
+    <div class="Team-container">
+        <div class="Team-header">
+            
+            <h2 class="Team-title">Meet Our Founder & Team</h2>
+            <p class="Team-subtitle">
+            Founded with a vision to empower Pakistan's youth through digital literacy, Learn & Grow Digital combines passionate leadership with expert instruction.
+            </p>
+        </div>
+        
+        <!-- CEO Section -->
+        <div class="ceo-section">
+            <div class="ceo-card">
+                <div class="ceo-image">
+                    <img src="{{ ceo.image.url }}" alt="{{ ceo.name }}">
+                </div>
+                <div class="ceo-content">
+                    <div class="ceo-badge">Founder & CEO</div>
+                    <h3 class="ceo-name">{{ ceo.name }}</h3>
+                    <p class="ceo-title">{{ ceo.title }}</p>
+                    <p class="ceo-bio">{{ ceo.bio }}</p>
+                    <div class="ceo-vision">
+                        <h4>Our Mission</h4>
+                        <p>{{ ceo.mission }}</p>
+                    </div>
+                    <div class="ceo-socials">
+                        {% if ceo.instagram %}
+                        <a href="{{ ceo.instagram }}" target="_blank"><img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png" alt="Instagram"></a>
+                        {% endif %}
+                        {% if ceo.linkedin %}
+                        <a href="{{ ceo.linkedin }}" target="_blank"><img src="https://cdn-icons-png.flaticon.com/512/145/145807.png" alt="LinkedIn"></a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Teaching Team Overview -->
+        <div class="teaching-team-section">
+            <h3 class="teaching-team-title">Our Expert Teaching Team</h3>
+            <div class="teaching-team-stats">
+                <div class="stat-card">
+                    <div class="stat-icon">🎓</div>
+                    <div class="stat-number">50+</div>
+                    <div class="stat-label">Years Combined Experience</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">👨‍🏫</div>
+                    <div class="stat-number">100%</div>
+                    <div class="stat-label">Certified Instructors</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">⭐</div>
+                    <div class="stat-number">4.9/5</div>
+                    <div class="stat-label">Average Class Rating</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">🏆</div>
+                    <div class="stat-number">500+</div>
+                    <div class="stat-label">Students Taught</div>
+                </div>
+            </div>
+            <div class="teaching-team-features">
+                <div class="feature-item">
+                    <span class="feature-icon">✓</span>
+                    <span>Specialized in child education and development</span>
+                </div>
+                <div class="feature-item">
+                    <span class="feature-icon">✓</span>
+                    <span>Expert knowledge in coding, game design, and digital creativity</span>
+                </div>
+                <div class="feature-item">
+                    <span class="feature-icon">✓</span>
+                    <span>Trained in interactive and engaging teaching methods</span>
+                </div>
+                <div class="feature-item">
+                    <span class="feature-icon">✓</span>
+                    <span>Continuous professional development and training</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    </section>
+<!-- Pricing Section -->
+<!-- Pricing Section -->
+<!-- Pricing Section -->
+<!-- Pricing Section -->
+{% load currency_tags %}
+
+<section class="pricing-section">
+    <div class="pricing-container">
+        <div class="pricing-header">
+            <h2 class="pricing-title">Choose the Right Plan</h2>
+            <p class="pricing-subtitle">
+                Flexible learning options designed for every child's success and growth
+            </p>
+        </div>
+
+        <div class="pricing-grid">
+            {% if plans %}
+                {% regroup plans by name as grouped_plans %}
+                {% for group in grouped_plans %}
+                <div class="pricing-card {% if group.grouper == 'prime' %}popular-card{% endif %}">
+                    
+                    {% if group.grouper == 'prime' %}
+                    <div class="popular-badge">Most Popular</div>
+                    {% endif %}
+
+                    <div class="card-header">
+                        <h3 class="card-title">{{ group.list.0.get_name_display }}</h3>
+                        <p class="card-subtitle">
+                            {% if group.grouper == 'premier' %}
+                                Micro-group (2–3 students)
+                            {% else %}
+                                Private 1-on-1 tutoring
+                            {% endif %}
+                        </p>
+                    </div>
+
+                    <!-- Pricing Section -->
+                    <div class="pricing-list">
+                        {% for plan in group.list %}
+                        <div class="pricing-item">
+                            <span class="pricing-desc">{{ plan.classes_per_week }} classes/week</span>
+                            <span class="pricing-amount">
+                                {% if country == "Pakistan" %}
+                                    PKR {{ plan.price_pkr|floatformat:0 }}
+                                {% elif country == "United States" or country == "USA" or country == "US" %}
+                                    ${{ plan.price_usd }}
+                                {% else %}
+                                    {% with plan.price_usd as usd_amount %}
+                                        {% with usd_amount|currency_convert:country as converted_text %}
+                                            {% if converted_text %}
+                                                {{ converted_text }}
+                                            {% else %}
+                                                ${{ plan.price_usd }}
+                                            {% endif %}
+                                        {% endwith %}
+                                    {% endwith %}
+                                {% endif %}
+                                </span>
+                        </div>
+                        {% endfor %}
+                    </div>
+
+                    <!-- Features Section -->
+                    <div class="features-list">
+                        {% if group.grouper == 'premier' %}
+                            <div class="feature-content">
+                                <div class="pricing-feature-icon"><i class="fas fa-check"></i></div>
+                                <span class="feature-text">60-minute interactive sessions</span>
+                            </div>
+                            <div class="feature-content">
+                                <div class="pricing-feature-icon"><i class="fas fa-check"></i></div>
+                                <span class="feature-text">Max 3 students per class</span>
+                            </div>
+                            <div class="feature-content">
+                                <div class="pricing-feature-icon"><i class="fas fa-check"></i></div>
+                                <span class="feature-text">Affordable group learning</span>
+                            </div>
+                        {% else %}
+                            <div class="feature-content">
+                                <div class="pricing-feature-icon"><i class="fas fa-check"></i></div>
+                                <span class="feature-text">45-minute 1-on-1 sessions</span>
+                            </div>
+                            <div class="feature-content">
+                                <div class="pricing-feature-icon"><i class="fas fa-check"></i></div>
+                                <span class="feature-text">Flexible scheduling</span>
+                            </div>
+                            <div class="feature-content">
+                                <div class="pricing-feature-icon"><i class="fas fa-check"></i></div>
+                                <span class="feature-text">Personalized attention</span>
+                            </div>
+                        {% endif %}
+                    </div>
+
+                    <button class="pricing-btn" onclick="openEnrollmentModal()">
+                        {% if group.grouper == 'prime' %}
+                            <i class="fas fa-crown"></i> Enroll Now
+                        {% else %}
+                            <i class="fas fa-graduation-cap"></i> Enroll Now
+                        {% endif %}
+                    </button>
+                </div>
+                {% endfor %}
+            {% else %}
+                <div class="no-plans-message">
+                    <p>No pricing plans available at the moment. Please check back later.</p>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</section>
+
+
+    <!-- FAQ Section -->
+<!-- FAQ Section -->
+<section class="faq-section" id="faq">
+    <div class="faq-decoration"></div>
+    <div class="faq-decoration faq-dec-1"></div>
+    <div class="faq-decoration faq-dec-2"></div>
+    <div class="faq-decoration faq-dec-3"></div>
+    
+    <div class="faq-container">
+        <div class="faq-header">
+            <h2 class="faq-title">Frequently Asked Questions</h2>
+            <p class="faq-subtitle">Find answers to common questions about our programs, teaching approach, and enrollment process</p>
+        </div>
+        
+    <div class="faq-accordion">
+        {% for faq in faqs %}
+        <div class="faq-item">
+            <div class="faq-question">
+                <span>{{ faq.question }}</span>
+                <span class="faq-icon"><i class="fas fa-chevron-down"></i></span>
+            </div>
+        <div class="faq-answer">
+            <p>{{ faq.answer }}</p>
+        </div>
+    </div>
+    {% empty %}
+    <p>No FAQs available at the moment.</p>
+    {% endfor %}
+</div>        
+        <div class="faq-cta">
+            <h3 class="faq-cta-title">Still have questions?</h3>
+            <p class="faq-cta-text">We're here to help you make the right decision for your child's learning journey.</p>
+            <div class="faq-buttons">
+                <button class="btn-faq-primary">Book a Free Trial</button>
+                <button class="btn-faq-secondary">Contact Us</button>
+            </div>
+        </div>
+    </div>
+</section>
+      <!-- Footer -->
+    <footer class="footer" id="contact">
+        <div class="footer-container">
+          
+          <!-- Logo & About -->
+          <div class="footer-section footer-logo">
+            <img src="{% static 'images/Updated Logo.png' %}" alt="Learn & Grow Digital Logo" class="logo-img">
+            <h3>Learn & Grow Digital</h3>
+            <p>Empowering kids through coding, creativity & digital skills.</p>
+            <p class="highlight"><strong>Trusted by parents – Certificates awarded on every course completion!</strong></p>
+          </div>
+
+          <!-- Quick Links -->
+          <div class="footer-section">
+            <h4>Quick Links</h4>
+            <ul>
+              <li><a href="#about">About Us</a></li>
+              <li><a href="#courses">Explore Courses</a></li>
+              <li><a href="#faq">FAQ</a></li>
+              <li><a href="#parents">Parent Guide</a></li>
+              <li><a href="#trial">Free Trial</a></li>
+              <li><a href="#feedback">Feedback</a></li>
+            </ul>
+          </div>
+
+          <!-- Contact Info -->
+          <div class="footer-section footer-contact">
+            <h4>Contact</h4>
+            <div class="contact-info">
+              <p><i class="fas fa-phone"></i> +92-312-3456789</p>
+              <p><i class="fas fa-envelope"></i> learnandgrow@academy.com</p>
+              <p><i class="fas fa-map-marker-alt"></i> Karachi, Pakistan</p>
+            </div>
+            
+            <!-- Social Links -->
+            <div class="footer-social">
+              <h4>Follow Us</h4>
+              <div class="social-links">
+                <a href="https://facebook.com/yourpage" target="_blank" aria-label="Facebook">
+                  <i class="fab fa-facebook-f"></i>
+                </a>
+                <a href="https://instagram.com/yourpage" target="_blank" aria-label="Instagram">
+                  <i class="fab fa-instagram"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Bottom -->
+        <div class="footer-bottom">
+          <p>© 2025 Learn & Grow Digital – All Rights Reserved</p>
+        </div>
+    </footer>
+        <!-- Free Trial Modal -->
+        <div id="trialModal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 class="modal-title">Book Your Free Trial</h2>
+                    <button id="closeModal" class="modal-close">&times;</button>
+                </div>
+                
+                <form id="trialForm">
+                    <!-- Row 1: Student Name + Age -->
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label" for="studentName">Student Name</label>
+                            <input type="text" class="form-input" id="studentName" name="studentName" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="studentAge">Student Age</label>
+                            <select class="form-select" id="studentAge" name="studentAge" required>
+                                <option value="">Select Age</option>
+                                <!-- Backend data will be inserted here -->
+                                {% for age in ages %}
+                                    <option value="{{ age }}">{{ age }} years</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Row 2: Course + Preferred Day -->
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label" for="course">Select Course</label>
+                            <select class="form-select" id="course" name="course" required>
+                                <option value="">Select a Course</option>
+                                <!-- Backend data will be inserted here -->
+                                {% for course in courses %}
+                                    <option value="{{ course.id }}">{{ course.title }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="preferredDay">Preferred Day</label>
+                            <select class="form-select" id="preferredDay" name="preferredDay" required>
+                                <option value="">Select Day</option>
+                                <!-- Backend data will be inserted here -->
+                                {% for day in days %}
+                                    <option value="{{ day|lower }}">{{ day }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Row 3: Preferred Time + Country -->
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label" for="preferredTime">Preferred Time</label>
+                            <select class="form-select" id="preferredTime" name="preferredTime" required>
+                                <option value="">Select Time</option>
+                                <!-- Backend data will be inserted here -->
+                                {% for time in times %}
+                                    <option value="{{ time }}">{{ time }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="country">Country</label>
+                            <input type="text" class="form-input" id="country" name="country" placeholder="Enter your country" required>
+                        </div>
+                    </div>
+
+                    <!-- Row 4: Contact Info (full width) -->
+                    <div class="form-group">
+                        <label class="form-label" for="contactInfo">Parent Contact Number/Email</label>
+                        <input type="text" class="form-input" id="contactInfo" name="contactInfo" required>
+                    </div>
+
+                    <!-- Submit -->
+                    <button type="submit" class="form-submit">Book Free Trial</button>
+                </form>
+                
+                <!-- Success Message -->
+                <div id="successMessage" class="success-message">
+                    <div class="success-icon">✓</div>
+                    <p class="success-text">Thank you for booking a free trial! We'll contact you shortly to confirm your session.</p>
+                </div>
+            </div>
+        </div>
+        <!-- Full Enrollment Modal -->
+<div id="enrollmentModal" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2 class="modal-title">Enroll Now</h2>
+            <button id="closeEnrollmentModal" class="modal-close">&times;</button>
+        </div>
+
+        <form id="enrollmentForm" enctype="multipart/form-data">
+            
+            <!-- Student Info -->
+            <h3 class="form-section-title">Student Information</h3>
+            <div class="form-row">
+                <div class="form-group">
+                    <label class="form-label" for="enrollStudentName">Student Name</label>
+                    <input type="text" class="form-input" id="enrollStudentName" name="studentName" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="grade">Grade/Class</label>
+                    <select class="form-select" id="grade" name="grade" required>
+                        <option value="">Select Grade</option>
+                        {% for i in grades %}
+                            <option value="{{ i }}">Class {{ i }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label" for="studentPhoto">Student Photo (optional)</label>
+                <input type="file" class="form-input" id="studentPhoto" name="studentPhoto" accept="image/*">
+            </div>
+
+            <!-- Course & Plan -->
+            <h3 class="form-section-title">Course & Plan Selection</h3>
+            <div class="form-row">
+                <div class="form-group">
+                    <label class="form-label" for="enrollCourse">Select Course</label>
+                    <select class="form-select" id="enrollCourse" name="course" required>
+                        <option value="">Select a Course</option>
+                        {% for course in courses %}
+                            <option value="{{ course.id }}">{{ course.title }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Select Plan</label>
+                    <div class="form-options">
+                        <label><input type="radio" name="plan" value="prime" required> Prime (1-on-1)</label>
+                        <label><input type="radio" name="plan" value="premier"> Premier (2–3 students)</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label class="form-label" for="classesPerWeek">Classes per Week</label>
+                    <select class="form-select" id="classesPerWeek" name="classesPerWeek" required>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Class Duration</label>
+                    <input type="text" class="form-input" id="classDuration" name="classDuration" readonly value="(Auto-set by plan)">
+                </div>
+            </div>
+
+            <!-- Schedule Preferences -->
+            <h3 class="form-section-title">Schedule Preferences</h3>
+            <div class="form-row">
+                <div class="form-group">
+                    <label class="form-label">Preferred Days</label>
+                    <div class="form-options form-options-multi">
+                        {% for day in days %}
+                            <label><input type="checkbox" name="preferredDays" value="{{ day }}">{{ day }}</label>
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="preferredTimeSlot">Preferred Time Slots</label>
+                    <select class="form-select" id="preferredTimeSlot" name="preferredTimeSlot" required>
+                        <option value="">Select Time</option>
+                        {% for time in times %}
+                            <option value="{{ time }}">{{ time }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+
+            <!-- Parent Info -->
+            <h3 class="form-section-title">Parent Information</h3>
+            <div class="form-row">
+                <div class="form-group">
+                    <label class="form-label" for="parentName">Parent Name</label>
+                    <input type="text" class="form-input" id="parentName" name="parentName" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="parentContact">Parent Contact Number</label>
+                    <input type="text" class="form-input" id="parentContact" name="parentContact" required>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label" for="parentEmail">Parent Email</label>
+                <input type="email" class="form-input" id="parentEmail" name="parentEmail" required>
+            </div>
+
+            <!-- Payment -->
+            <h3 class="form-section-title">Payment Options</h3>
+            <div class="form-row">
+                <div class="form-group">
+                    <label class="form-label">Payment Method</label>
+                    <div class="form-options">
+                        <label><input type="radio" name="paymentMethod" value="JazzCash" required> JazzCash</label>
+                        <label><input type="radio" name="paymentMethod" value="SadaPay"> SadaPay</label>
+                        <label><input type="radio" name="paymentMethod" value="NayaPay"> NayaPay</label>
+                        <label><input type="radio" name="paymentMethod" value="Payoneer"> Payoneer</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label class="form-label" for="transactionId">Transaction ID / Reference</label>
+                    <input type="text" class="form-input" id="transactionId" name="transactionId" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="paymentScreenshot">Upload Payment Screenshot</label>
+                    <input type="file" class="form-input" id="paymentScreenshot" name="paymentScreenshot" accept="image/*" required>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label" for="specialNotes">Special Notes (Optional)</label>
+                <textarea class="form-input" id="specialNotes" name="specialNotes" rows="3"></textarea>
+            </div>
+
+            <!-- Submit -->
+            <button type="submit" class="form-submit">Confirm Enrollment & Proceed</button>
+        </form>
+
+        <!-- Success Message -->
+        <div id="enrollmentSuccess" class="success-message">
+            <div class="success-icon">✓</div>
+            <p class="success-text">Enrollment successful! Our team will contact you with class details.</p>
+        </div>
+    </div>
+</div>
+
+    <!-- Course Info Modal (shared for all courses) -->
+    <div class="course-modal-overlay" id="courseModal" style="display:none;">
+    <div class="course-modal-container">
+        <div class="course-modal-header">
+            <div class="course-modal-icon">
+                <i class="fas fa-gamepad"></i>
+            </div>
+            <div class="course-modal-title-container">
+                <h2 class="course-modal-title" id="modalCourseTitle"></h2>
+                <p class="course-modal-tagline" id="modalCourseTagline"></p>
+            </div>
+            <button class="course-modal-close" id="closeCourseModal">&times;</button>
+        </div>
+        
+        <div class="course-modal-body">
+            <!-- Course Overview -->
+            <div class="course-modal-section">
+                <h3 class="course-modal-section-title"><i class="fas fa-info-circle"></i> Course Overview</h3>
+                <p class="course-modal-description" id="modalCourseDescription"></p>
+            </div>
+            
+            <!-- What Child Will Learn -->
+            <div class="course-modal-section">
+                <h3 class="course-modal-section-title"><i class="fas fa-graduation-cap"></i> What Your Child Will Learn</h3>
+                <ul class="course-modal-list" id="modalCourseLearnings">
+                    <!-- dynamically inserted list items -->
+                </ul>
+            </div>
+            
+            <!-- Class Structure -->
+            <div class="course-modal-section">
+                <h3 class="course-modal-section-title"><i class="fas fa-chalkboard-teacher"></i> Class Structure</h3>
+                <div class="course-details-grid">
+                    <div class="course-detail-item">
+                        <span class="course-detail-label">Duration</span>
+                        <span class="course-detail-value" id="modalCourseDuration"></span>
+                    </div>
+                    <div class="course-detail-item">
+                        <span class="course-detail-label">Mode</span>
+                        <span class="course-detail-value">Online (Zoom/Meet)</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Requirements -->
+            <div class="course-modal-section">
+                <h3 class="course-modal-section-title"><i class="fas fa-tools"></i> Requirements</h3>
+                <ul class="course-modal-list" id="modalCourseRequirements">
+                    <!-- dynamically inserted list items -->
+                </ul>
+            </div>
+            
+            <!-- Sample Projects -->
+            <div class="course-modal-section">
+                <h3 class="course-modal-section-title"><i class="fas fa-project-diagram"></i> Sample Projects</h3>
+                <div class="projects-grid" id="modalCourseProjects">
+                    <!-- dynamically inserted project items -->
+                </div>
+            </div>
+            
+            <!-- Action Buttons -->
+            <div class="course-modal-actions">
+                <button class="modal-btn modal-btn-trial" id="modalTrialBtn" onclick="openTrialModal()">
+                    <i class="fas fa-calendar-check"></i> Book a Free Trial
+                </button>
+                <button class="modal-btn modal-btn-enroll" id="modalEnrollBtn" onclick="openEnrollmentModal()">
+                    <i class="fas fa-ticket-alt"></i> Enroll Now
+                </button>
+            </div>
+        </div>
+    </div>
+    </div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+<script src="{% static 'js/script.js' %}"></script>
+</body>
+</html>
