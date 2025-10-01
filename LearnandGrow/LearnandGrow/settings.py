@@ -55,6 +55,7 @@ JAZZMIN_SETTINGS = {
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -62,6 +63,10 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+# WhiteNoise Settings
+WHITENOISE_MAX_AGE = 31536000  # 1 year in seconds (for static assets)
+WHITENOISE_AUTOREFRESH = DEBUG  # In development, files refresh automatically
+WHITENOISE_USE_FINDERS = True
 
 ROOT_URLCONF = 'LearnandGrow.urls'
 
@@ -128,7 +133,15 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 
-STATIC_URL = 'static/'
+# Static files (CSS, JS, Images)
+STATIC_URL = '/static/'
+STATICFILES_DIRS = [
+    BASE_DIR / "academy" / "static",   # <-- correct path
+]
+STATIC_ROOT = BASE_DIR / "staticfiles"
+
+# ✅ WhiteNoise Settings for Gzip + Brotli
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
@@ -136,3 +149,14 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+# Email Settings (using Gmail as example)
+EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+EMAIL_HOST = "smtp.gmail.com"
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = "learngrowdigitally@gmail.com"       # sender email
+EMAIL_HOST_PASSWORD = "mmqj qbdh tbkz wllq"     # use Gmail App Password (not your real password)
+
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+ADMIN_EMAIL = "ammartajudin1@gmail.com"  # where admin notifications will go

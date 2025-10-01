@@ -4,18 +4,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Learn & Grow Digital Academy helps kids and beginners explore coding, game development, and app creation in a fun and easy way. Join our interactive courses to start your digital journey today!">
+    <meta name="keywords" content="Learn & Grow Digital, coding for kids, coding for beginners, game development, app creation, online coding courses, digital skills, programming for kids, coding academy, Learn & Grow Digital Academy">
     <title>Learn & Grow Digital - Pakistan's First Digital Academy For Kids & Teens</title>
-    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    <link rel="icon" href="{% static 'images/favicon.png' %}" type="image/x-icon">
 
+    <!-- ✅ Preload critical CSS then load -->
+    <link rel="preload" href="{% static 'css/styles.css' %}" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="{% static 'css/styles.css' %}"></noscript>
+
+    <!-- ✅ Google Fonts optimized (combined + display=swap) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Jost:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+
+    <!-- ✅ Swiper CSS async -->
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css"></noscript>
+
+    <!-- ✅ Font Awesome async -->
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"></noscript>
+
+    <!-- Favicon -->
+    <link rel="icon" href="{% static 'images/favicon.png' %}" type="image/x-icon">
 </head>
+
 <body>
     <!-- Navigation -->
     <nav class="navbar">
@@ -23,7 +36,9 @@
             <!-- Logo -->
             <div class="nav-logo">
                 <div class="logo-icon">
+                      <a href="#" onclick="window.location.reload(); return false;">
                     <img src="{% static 'images/dolphin.png' %}" alt="Learn & Grow Logo" class="logo-img" />
+                    </a>
                 </div>
                 <span class="logo-text">Learn & Grow Digital</span>
             </div>
@@ -32,8 +47,9 @@
             <div class="nav-menu">
                 <a href="#home" class="nav-link">Home</a>
                 <a href="#courses" class="nav-link">Courses</a>
+                <a href="#pricing" class="nav-link">Pricing</a>          
                 <a href="#reviews" class="nav-link">Testimonials</a>
-                <a href="#about" class="nav-link">About us</a>
+                <a href="#faq" class="nav-link">FAQ</a>                  
                 <a href="#contact" class="nav-link">Contact us</a>
                 <button class="btn-trial" onclick="openTrialModal()">Book a Free Trial</button>
             </div>
@@ -50,8 +66,9 @@
         <div class="mobile-menu" id="mobileMenu">
             <a href="#home" class="mobile-nav-link">Home</a>
             <a href="#courses" class="mobile-nav-link">Courses</a>
+            <a href="#pricing" class="mobile-nav-link">Pricing</a>
             <a href="#reviews" class="mobile-nav-link">Testimonials</a>
-            <a href="#about" class="mobile-nav-link">About us</a>
+            <a href="#faq" class="mobile-nav-link">FAQ</a>
             <a href="#contact" class="mobile-nav-link">Contact us</a>
             <button class="btn-trial mobile" onclick="openTrialModal()">Book a Free Trial</button>
         </div>
@@ -64,12 +81,6 @@
                 <div class="decoration decoration-1"></div>
                 <div class="decoration decoration-2"></div>
                 <div class="decoration decoration-3"></div>
-                <div class="decoration decoration-4"></div>
-                <div class="decoration decoration-5"></div>
-                <div class="decoration decoration-6"></div>
-                <div class="decoration decoration-7"></div>
-                <div class="decoration decoration-8"></div>
-                <div class="decoration decoration-9"></div>
             </div>
             <div class="hero-content">
                 <!-- Left Content -->
@@ -87,7 +98,15 @@
                 <!-- Right Content - Illustration -->
                 <div class="hero-illustration">
                     <div class="illustration-container">                        
-                        <img src="{% static 'images/Kids.png' %}" alt="Kids Learning Illustration" class="illustration-img" />
+                        <link rel="preload" as="image" href="{% static 'images/Kids.webp' %}">
+                        <img 
+                            src="{% static 'images/Kids.webp' %}" 
+                            alt="Kids Learning Illustration" 
+                            class="illustration-img"
+                            width="600" 
+                            height="400"
+                            fetchpriority="high"
+                        />
                     </div>
                     <div class="hollow-circle"></div>
                 </div>
@@ -96,11 +115,11 @@
 
 <div class="logo-strip">
     <div class="logo-container">
-        <img src="{% static 'images/code-org.svg' %}" alt="Code.org Logo">
-        <img src="{% static 'images/python-logo.png' %}" alt="Python Logo">
-        <img src="{% static 'images/scratch.png' %}" alt="Scratch Logo">
-        <img src="{% static 'images/Hatch.png' %}" alt="HatchXR Logo">
-        <img src="{% static 'images/Html.png' %}" alt="HTML Logo">
+        <img src="{% static 'images/code-org.svg' %}" alt="Code.org Logo" loading="lazy">
+        <img src="{% static 'images/python-logo.webp' %}" alt="Python Logo" loading="lazy">
+        <img src="{% static 'images/scratch.webp' %}" alt="Scratch Logo" loading="lazy">
+        <img src="{% static 'images/Hatch.webp' %}" alt="HatchXR Logo" loading="lazy">
+        <img src="{% static 'images/Html.webp' %}" alt="HTML Logo" loading="lazy">
     </div>
 </div>
 
@@ -155,7 +174,7 @@
             </div>
             
             <div class="why-coding-illustration">
-                <img src="{% static 'images/kid-illustration.png' %}" alt="Child Learning Coding" class="kid-illustration">
+                <img src="{% static 'images/kid-illustration.webp' %}" alt="Child Learning Coding" class="kid-illustration">
                 <div class="illustration-dots"></div>
             </div>
         </div>
@@ -174,13 +193,6 @@
                 <p>Parents want coding in schools</p>
             </div>
         </div>
-    </div>
-    
-    <!-- Decorative elements -->
-    <div class="bg-decorations">
-        <div class="decoration decoration-1"></div>
-        <div class="decoration decoration-2"></div>
-        <div class="decoration decoration-3"></div>
     </div>
     </section>
     <!-- Courses Section -->
@@ -352,7 +364,7 @@
             <div class="learning-content">
                 <div class="learning-illustration">
                     <div class="learning-illustration-container">                        
-                        <img src="{% static 'images/kiddy.png' %}" alt="Kids Learning Illustration" class="learning-illustration-img" />
+                        <img src="{% static 'images/kiddy.webp' %}" alt="Kids Learning Illustration" class="learning-illustration-img" />
                     </div>
                 </div>
                 <div class="L-text">
@@ -424,7 +436,6 @@
     </div>
     </section>
     <!-- Teachers Section -->
-<!-- Teachers Section -->
     <section class="Team" id="team">
     <div class="Team-container">
         <div class="Team-header">
@@ -508,13 +519,9 @@
         </div>
     </div>
     </section>
-<!-- Pricing Section -->
-<!-- Pricing Section -->
-<!-- Pricing Section -->
-<!-- Pricing Section -->
-{% load currency_tags %}
-
-<section class="pricing-section">
+    <!-- Pricing Section -->
+    {% load currency_tags %}
+    <section class="pricing-section" id="pricing">
     <div class="pricing-container">
         <div class="pricing-header">
             <h2 class="pricing-title">Choose the Right Plan</h2>
@@ -547,26 +554,48 @@
                     <!-- Pricing Section -->
                     <div class="pricing-list">
                         {% for plan in group.list %}
-                        <div class="pricing-item">
-                            <span class="pricing-desc">{{ plan.classes_per_week }} classes/week</span>
-                            <span class="pricing-amount">
-                                {% if country == "Pakistan" %}
-                                    PKR {{ plan.price_pkr|floatformat:0 }}
-                                {% elif country == "United States" or country == "USA" or country == "US" %}
-                                    ${{ plan.price_usd }}
-                                {% else %}
-                                    {% with plan.price_usd as usd_amount %}
-                                        {% with usd_amount|currency_convert:country as converted_text %}
-                                            {% if converted_text %}
-                                                {{ converted_text }}
-                                            {% else %}
-                                                ${{ plan.price_usd }}
-                                            {% endif %}
+                            <div class="pricing-item"
+                                data-plan="{{ group.grouper }}"
+                                data-classes="{{ plan.classes_per_week }}"
+                                data-pkr="{{ plan.price_pkr|floatformat:0 }}"
+                                data-usd="{{ plan.price_usd }}"
+                                data-display='
+                                    {% if country == "Pakistan" %}
+                                        PKR {{ plan.price_pkr|floatformat:0 }}
+                                    {% elif country == "United States" or country == "USA" or country == "US" %}
+                                        ${{ plan.price_usd }}
+                                    {% else %}
+                                        {% with plan.price_usd as usd_amount %}
+                                            {% with usd_amount|currency_convert:country as converted_text %}
+                                                {% if converted_text %}
+                                                    {{ converted_text }}
+                                                {% else %}
+                                                    ${{ plan.price_usd }}
+                                                {% endif %}
+                                            {% endwith %}
                                         {% endwith %}
-                                    {% endwith %}
-                                {% endif %}
+                                    {% endif %}
+                                '>
+                                <span class="pricing-desc">{{ plan.classes_per_week }} classes/week</span>
+                                <span class="pricing-amount">
+                                    {# show same formatted string for users #}
+                                    {% if country == "Pakistan" %}
+                                        PKR {{ plan.price_pkr|floatformat:0 }}
+                                    {% elif country == "United States" or country == "USA" or country == "US" %}
+                                        ${{ plan.price_usd }}
+                                    {% else %}
+                                        {% with plan.price_usd as usd_amount %}
+                                            {% with usd_amount|currency_convert:country as converted_text %}
+                                                {% if converted_text %}
+                                                    {{ converted_text }}
+                                                {% else %}
+                                                    ${{ plan.price_usd }}
+                                                {% endif %}
+                                            {% endwith %}
+                                        {% endwith %}
+                                    {% endif %}
                                 </span>
-                        </div>
+                            </div>
                         {% endfor %}
                     </div>
 
@@ -617,12 +646,9 @@
             {% endif %}
         </div>
     </div>
-</section>
-
-
+    </section>
     <!-- FAQ Section -->
-<!-- FAQ Section -->
-<section class="faq-section" id="faq">
+    <section class="faq-section" id="faq">
     <div class="faq-decoration"></div>
     <div class="faq-decoration faq-dec-1"></div>
     <div class="faq-decoration faq-dec-2"></div>
@@ -658,80 +684,106 @@
             </div>
         </div>
     </div>
-</section>
-      <!-- Footer -->
+    </section>
+    <!-- Footer -->
     <footer class="footer" id="contact">
-        <div class="footer-container">
-          
-          <!-- Logo & About -->
-          <div class="footer-section footer-logo">
-            <img src="{% static 'images/Updated Logo.png' %}" alt="Learn & Grow Digital Logo" class="logo-img">
-            <h3>Learn & Grow Digital</h3>
-            <p>Empowering kids through coding, creativity & digital skills.</p>
-            <p class="highlight"><strong>Trusted by parents – Certificates awarded on every course completion!</strong></p>
-          </div>
+  <div class="footer-container">
+    
+    <!-- Logo & About -->
+    <div class="footer-section footer-logo">
+      <img src="{% static 'images/dolphin.png' %}" alt="Learn & Grow Digital Logo" class="footer-logo-img">
+      <h3>Learn & Grow Digital</h3>
+      <p>Empowering kids through coding, creativity & digital skills.</p>
+      <p class="highlight"><strong>Trusted by parents – Certificates awarded on every course completion!</strong></p>
+    </div>
 
-          <!-- Quick Links -->
-          <div class="footer-section">
-            <h4>Quick Links</h4>
-            <ul>
-              <li><a href="#about">About Us</a></li>
-              <li><a href="#courses">Explore Courses</a></li>
-              <li><a href="#faq">FAQ</a></li>
-              <li><a href="#parents">Parent Guide</a></li>
-              <li><a href="#trial">Free Trial</a></li>
-              <li><a href="#feedback">Feedback</a></li>
-            </ul>
-          </div>
+    <!-- Quick Links -->
+    <div class="footer-section">
+      <h4>Quick Links</h4>
+      <ul>
+        <li><a href="#team"><i class="fas fa-chevron-right"></i> About Us</a></li>
+        <li><a href="#courses"><i class="fas fa-chevron-right"></i> Explore Courses</a></li>
+        <li><a href="#faq"><i class="fas fa-chevron-right"></i> FAQ</a></li>
+        <li><a href="#reviews"><i class="fas fa-chevron-right"></i> Testimonials</a></li>
+      </ul>
+    </div>
 
-          <!-- Contact Info -->
-          <div class="footer-section footer-contact">
-            <h4>Contact</h4>
-            <div class="contact-info">
-              <p><i class="fas fa-phone"></i> +92-312-3456789</p>
-              <p><i class="fas fa-envelope"></i> learnandgrow@academy.com</p>
-              <p><i class="fas fa-map-marker-alt"></i> Karachi, Pakistan</p>
-            </div>
-            
-            <!-- Social Links -->
-            <div class="footer-social">
-              <h4>Follow Us</h4>
-              <div class="social-links">
-                <a href="https://facebook.com/yourpage" target="_blank" aria-label="Facebook">
-                  <i class="fab fa-facebook-f"></i>
+    <!-- Resources -->
+    <div class="footer-section">
+      <h4>Resources</h4>
+      <ul>
+        <li><a href="#parents"><i class="fas fa-chevron-right"></i> Parent Guide</a></li>
+        <li><a href="#trial"><i class="fas fa-chevron-right"></i> Free Trial</a></li>
+        <li><a href="#feedback"><i class="fas fa-chevron-right"></i> Feedback</a></li>
+        <li><a href="#blog"><i class="fas fa-chevron-right"></i> Blog</a></li>
+      </ul>
+    </div>
+
+    <!-- Contact & Social -->
+    <div class="footer-section footer-contact">
+      <h4>Contact & Follow</h4>
+      <div class="contact-info">
+        <div class="contact-item">
+            <i class="fab fa-whatsapp"></i>
+            <div>
+                <span class="contact-label">Quick WhatsApp:</span>
+                <a href="https://wa.me/923212858793?text=Hi!%20I'm%20interested%20in%20coding%20courses%20for%20my%20child.%20Can%20you%20share%20more%20details?" 
+                   class="contact-value whatsapp-link">
+                     Message Us
                 </a>
-                <a href="https://instagram.com/yourpage" target="_blank" aria-label="Instagram">
-                  <i class="fab fa-instagram"></i>
-                </a>
-              </div>
             </div>
+        </div>
+        
+        <div class="contact-item">
+          <i class="fas fa-envelope"></i>
+          <div>
+            <span class="contact-label">Email Us:</span>
+            <a href="mailto:learnandgrow@academy.com" class="contact-value">learngrowdigitally@gmail.com</a>
           </div>
-
         </div>
-
-        <!-- Bottom -->
-        <div class="footer-bottom">
-          <p>© 2025 Learn & Grow Digital – All Rights Reserved</p>
+      </div>
+      
+      <div class="social-section">
+        <h5>Follow Our Journey</h5>
+        <div class="social-links">
+          <a href="https://www.facebook.com/share/1ANJZ3AasU/?mibextid=wwXIfr" target="_blank" aria-label="Facebook" class="social-btn">
+            <i class="fab fa-facebook-f"></i>
+            <span>Facebook</span>
+          </a>
+          <a href="https://www.instagram.com/learn_and_grow_digital?igsh=dmd0bXg4N3plcTNi&utm_source=qr" target="_blank" aria-label="Instagram" class="social-btn">
+            <i class="fab fa-instagram"></i>
+            <span>Instagram</span>
+          </a>
         </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Bottom -->
+  <div class="footer-bottom">
+    <p>© 2025 Learn & Grow Digital – All Rights Reserved</p>
+  </div>
     </footer>
-        <!-- Free Trial Modal -->
-        <div id="trialModal" class="modal">
+    <!-- Free Trial Modal -->
+    <div id="trialModal" class="modal">
             <div class="modal-content">
                 <div class="modal-header">
                     <h2 class="modal-title">Book Your Free Trial</h2>
                     <button id="closeModal" class="modal-close">&times;</button>
                 </div>
                 
-                <form id="trialForm">
+                <form id="trialForm" method="post" action="{% url 'submit_trial' %}">
+                    {% csrf_token %}
                     <!-- Row 1: Student Name + Age -->
                     <div class="form-row">
                         <div class="form-group">
                             <label class="form-label" for="studentName">Student Name</label>
-                            <input type="text" class="form-input" id="studentName" name="studentName" required>
+                            <input type="text" class="form-input" id="studentName" name="student_name" required>
                         </div>
                         <div class="form-group">
                             <label class="form-label" for="studentAge">Student Age</label>
-                            <select class="form-select" id="studentAge" name="studentAge" required>
+                            <select class="form-select" id="studentAge" name="student_age" required>
                                 <option value="">Select Age</option>
                                 <!-- Backend data will be inserted here -->
                                 {% for age in ages %}
@@ -755,10 +807,10 @@
                         </div>
                         <div class="form-group">
                             <label class="form-label" for="preferredDay">Preferred Day</label>
-                            <select class="form-select" id="preferredDay" name="preferredDay" required>
+                            <select class="form-select" id="preferredDay" name="preferred_day" required>
                                 <option value="">Select Day</option>
                                 <!-- Backend data will be inserted here -->
-                                {% for day in days %}
+                                {% for day in trial_days %}
                                     <option value="{{ day|lower }}">{{ day }}</option>
                                 {% endfor %}
                             </select>
@@ -769,10 +821,10 @@
                     <div class="form-row">
                         <div class="form-group">
                             <label class="form-label" for="preferredTime">Preferred Time</label>
-                            <select class="form-select" id="preferredTime" name="preferredTime" required>
+                            <select class="form-select" id="preferredTime" name="preferred_time" required>
                                 <option value="">Select Time</option>
                                 <!-- Backend data will be inserted here -->
-                                {% for time in times %}
+                                {% for time in trial_times %}
                                     <option value="{{ time }}">{{ time }}</option>
                                 {% endfor %}
                             </select>
@@ -786,7 +838,7 @@
                     <!-- Row 4: Contact Info (full width) -->
                     <div class="form-group">
                         <label class="form-label" for="contactInfo">Parent Contact Number/Email</label>
-                        <input type="text" class="form-input" id="contactInfo" name="contactInfo" required>
+                        <input type="text" class="form-input" id="contactInfo" name="contact_info" required>
                     </div>
 
                     <!-- Submit -->
@@ -799,23 +851,24 @@
                     <p class="success-text">Thank you for booking a free trial! We'll contact you shortly to confirm your session.</p>
                 </div>
             </div>
-        </div>
-        <!-- Full Enrollment Modal -->
-<div id="enrollmentModal" class="modal">
+    </div>
+    <!-- Full Enrollment Modal -->
+    <div id="enrollmentModal" class="modal">
     <div class="modal-content">
         <div class="modal-header">
             <h2 class="modal-title">Enroll Now</h2>
             <button id="closeEnrollmentModal" class="modal-close">&times;</button>
         </div>
 
-        <form id="enrollmentForm" enctype="multipart/form-data">
-            
+<!-- Correct -->
+        <form id="enrollmentForm" enctype="multipart/form-data" method="post" action="{% url 'submit_enrollment' %}">
+            {% csrf_token %}
             <!-- Student Info -->
             <h3 class="form-section-title">Student Information</h3>
             <div class="form-row">
                 <div class="form-group">
                     <label class="form-label" for="enrollStudentName">Student Name</label>
-                    <input type="text" class="form-input" id="enrollStudentName" name="studentName" required>
+                    <input type="text" class="form-input" id="enrollStudentName" name="student_name" required>
                 </div>
                 <div class="form-group">
                     <label class="form-label" for="grade">Grade/Class</label>
@@ -830,7 +883,7 @@
 
             <div class="form-group">
                 <label class="form-label" for="studentPhoto">Student Photo (optional)</label>
-                <input type="file" class="form-input" id="studentPhoto" name="studentPhoto" accept="image/*">
+                <input type="file" class="upload-box" id="studentPhoto" name="student_photo" accept="image/*">
             </div>
 
             <!-- Course & Plan -->
@@ -857,17 +910,22 @@
             <div class="form-row">
                 <div class="form-group">
                     <label class="form-label" for="classesPerWeek">Classes per Week</label>
-                    <select class="form-select" id="classesPerWeek" name="classesPerWeek" required>
+                    <select class="form-select" id="classesPerWeek" name="classes_per_week" required>
+                        <option value="1">1</option>
                         <option value="2">2</option>
                         <option value="3">3</option>
-                        <option value="4">4</option>
                     </select>
                 </div>
                 <div class="form-group">
                     <label class="form-label">Class Duration</label>
-                    <input type="text" class="form-input" id="classDuration" name="classDuration" readonly value="(Auto-set by plan)">
+                    <input type="text" class="form-input" id="classDuration" name="class_duration" readonly value="(Auto-set by plan)">
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="calculatedFee">Fee</label>
+                    <input type="text" class="form-input" id="calculatedFee" name="calculated_fee" readonly value="(Auto-calculated)">
                 </div>
             </div>
+            
 
             <!-- Schedule Preferences -->
             <h3 class="form-section-title">Schedule Preferences</h3>
@@ -875,16 +933,16 @@
                 <div class="form-group">
                     <label class="form-label">Preferred Days</label>
                     <div class="form-options form-options-multi">
-                        {% for day in days %}
-                            <label><input type="checkbox" name="preferredDays" value="{{ day }}">{{ day }}</label>
+                        {% for day in enrollment_days %}
+                            <label><input type="checkbox" name="preferred_days" value="{{ day }}">{{ day }}</label>
                         {% endfor %}
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="form-label" for="preferredTimeSlot">Preferred Time Slots</label>
-                    <select class="form-select" id="preferredTimeSlot" name="preferredTimeSlot" required>
+                    <select class="form-select" id="preferredTimeSlot" name="preferred_time_slot" required>
                         <option value="">Select Time</option>
-                        {% for time in times %}
+                        {% for time in enrollment_times %}
                             <option value="{{ time }}">{{ time }}</option>
                         {% endfor %}
                     </select>
@@ -896,47 +954,60 @@
             <div class="form-row">
                 <div class="form-group">
                     <label class="form-label" for="parentName">Parent Name</label>
-                    <input type="text" class="form-input" id="parentName" name="parentName" required>
+                    <input type="text" class="form-input" id="parentName" name="parent_name" required>
                 </div>
                 <div class="form-group">
                     <label class="form-label" for="parentContact">Parent Contact Number</label>
-                    <input type="text" class="form-input" id="parentContact" name="parentContact" required>
+                    <input type="text" class="form-input" id="parentContact" name="parent_contact" required>
                 </div>
             </div>
 
             <div class="form-group">
                 <label class="form-label" for="parentEmail">Parent Email</label>
-                <input type="email" class="form-input" id="parentEmail" name="parentEmail" required>
+                <input type="email" class="form-input" id="parentEmail" name="parent_email" required>
             </div>
 
-            <!-- Payment -->
-            <h3 class="form-section-title">Payment Options</h3>
-            <div class="form-row">
-                <div class="form-group">
-                    <label class="form-label">Payment Method</label>
-                    <div class="form-options">
-                        <label><input type="radio" name="paymentMethod" value="JazzCash" required> JazzCash</label>
-                        <label><input type="radio" name="paymentMethod" value="SadaPay"> SadaPay</label>
-                        <label><input type="radio" name="paymentMethod" value="NayaPay"> NayaPay</label>
-                        <label><input type="radio" name="paymentMethod" value="Payoneer"> Payoneer</label>
-                    </div>
+        <!-- Payment -->
+        <h3 class="form-section-title">Payment Options</h3>
+        <div class="form-row">
+            <div class="form-group">
+                <label class="form-label">Payment Method</label>
+                <div class="form-options">
+                    <label><input type="radio" name="payment_method" value="JazzCash" required> JazzCash</label>
+                    <label><input type="radio" name="payment_method" value="NayaPay"> NayaPay</label>
+                    <label><input type="radio" name="payment_method" value="Payoneer"> Payoneer</label>
                 </div>
             </div>
+        </div>
 
-            <div class="form-row">
-                <div class="form-group">
-                    <label class="form-label" for="transactionId">Transaction ID / Reference</label>
-                    <input type="text" class="form-input" id="transactionId" name="transactionId" required>
-                </div>
-                <div class="form-group">
-                    <label class="form-label" for="paymentScreenshot">Upload Payment Screenshot</label>
-                    <input type="file" class="form-input" id="paymentScreenshot" name="paymentScreenshot" accept="image/*" required>
-                </div>
+        <!-- Dynamic Bank Details -->
+        <div id="bankDetails" class="bank-details-box" style="display:none;">
+            <h4>Send Payment To:</h4>
+            <p><strong>Account Name:</strong> <span id="accountName"></span></p>
+            <p>
+                <strong>Account Number:</strong> 
+                <span id="accountNumber"></span>
+                <button type="button" onclick="copyAccountNumber()" class="copy-btn">Copy</button>
+            </p>
+            <p class="note">⚠ Please transfer the fee before submitting this form.</p>
+        </div>
+
+        <!-- Payment Screenshot -->
+        <div class="form-row">
+            <div class="form-group">
+                <label class="form-label" for="transactionId">Transaction ID / Reference</label>
+                <input type="text" class="form-input" id="transactionId" name="transaction_id">
             </div>
+            <div class="form-group">
+                <label class="form-label" for="paymentScreenshot">Upload Payment Screenshot</label>
+                <input type="file" class="upload-box" id="paymentScreenshot" name="payment_screenshot" accept="image/*">
+                <small class="form-hint">Or send later on WhatsApp: <strong>+92-3XX-XXXXXXX</strong></small>
+            </div>
+        </div>
 
             <div class="form-group">
                 <label class="form-label" for="specialNotes">Special Notes (Optional)</label>
-                <textarea class="form-input" id="specialNotes" name="specialNotes" rows="3"></textarea>
+                <textarea class="form-input" id="specialNotes" name="special_notes" rows="3"></textarea>
             </div>
 
             <!-- Submit -->
@@ -949,8 +1020,8 @@
             <p class="success-text">Enrollment successful! Our team will contact you with class details.</p>
         </div>
     </div>
-</div>
-
+    
+    </div>
     <!-- Course Info Modal (shared for all courses) -->
     <div class="course-modal-overlay" id="courseModal" style="display:none;">
     <div class="course-modal-container">
@@ -1022,6 +1093,15 @@
             </div>
         </div>
     </div>
+    </div>
+    <!-- WhatsApp Floating Button -->
+    <div class="floating-whatsapp">
+    <a href="https://wa.me/923212858793?text=Hi!%20I'm%20interested%20in%20coding%20courses%20for%20my%20child.%20Can%20you%20share%20more%20details?" 
+       target="_blank" class="whatsapp-float">
+        <i class="fab fa-whatsapp"></i>
+        <span class="whatsapp-text">Message Us</span>
+        <div class="pulse-ring"></div>
+    </a>
     </div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>

@@ -90,34 +90,6 @@ document.querySelectorAll('.mobile-nav-link').forEach(link => {
           },
         },
       });
-      
-    const swiper3 = new Swiper(".teacherSwiper", {
-        slidesPerView: 1,
-        spaceBetween: 30,
-        loop: true,
-        autoplay: {
-          delay: 4000,
-          disableOnInteraction: false,
-        },
-        pagination: {
-          el: ".teacher-pagination",
-          clickable: true,
-        },
-        breakpoints: {
-          640: {
-            slidesPerView: 1,
-            spaceBetween: 20,
-          },
-          768: {
-            slidesPerView: 2,
-            spaceBetween: 30,
-          },
-          1024: {
-            slidesPerView: 3,
-            spaceBetween: 30,
-          },
-        },
-      });
 
 
 // Smooth scrolling for anchor links
@@ -173,7 +145,7 @@ const observer = new IntersectionObserver((entries) => {
 
 // Observe elements for animation
 document.addEventListener('DOMContentLoaded', () => {
-    const animateElements = document.querySelectorAll('.feature-card, .hero-text, .hero-illustration');
+    const animateElements = document.querySelectorAll('.hero-text, .hero-illustration');
     
     animateElements.forEach(el => {
         el.style.opacity = '0';
@@ -231,7 +203,6 @@ style.textContent = `
 `;
 document.head.appendChild(style);
 
-// Modal functionality
 // Enrollment Modal functionality
 document.addEventListener('DOMContentLoaded', function() {
     const enrollmentModal = document.getElementById('enrollmentModal');
@@ -295,21 +266,98 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // Form submission
-    enrollmentForm.addEventListener('submit', function(e) {
-        e.preventDefault();
+// Working Enrollment Form Submission
+// Working Enrollment Form Submission
+enrollmentForm.addEventListener('submit', function(e) {
+    e.preventDefault();
 
-        // Hide form and show success message
-        enrollmentForm.style.display = 'none';
-        enrollmentSuccessMessage.style.display = 'block';
-
-        // Reset form after 3 seconds and close modal
-        setTimeout(function() {
-            enrollmentForm.reset();
-            enrollmentForm.style.display = 'block';
-            enrollmentSuccessMessage.style.display = 'none';
-            closeEnrollmentModal();
-        }, 3000);
+    // Create FormData and manually handle multiple values
+    const formData = new FormData();
+    const formElements = this.elements;
+    
+    // Add all form fields except preferred_days
+    for (let element of formElements) {
+        if (element.name && element.name !== 'preferred_days') {
+            if (element.type === 'checkbox' || element.type === 'radio') {
+                if (element.checked) {
+                    formData.append(element.name, element.value);
+                }
+            } else if (element.type === 'file') {
+                if (element.files.length > 0) {
+                    formData.append(element.name, element.files[0]);
+                }
+            } else {
+                formData.append(element.name, element.value);
+            }
+        }
+    }
+    
+    // Handle preferred_days separately - add each checked value
+    const preferredDaysCheckboxes = this.querySelectorAll('input[name="preferred_days"]:checked');
+    preferredDaysCheckboxes.forEach(checkbox => {
+        formData.append('preferred_days', checkbox.value);
     });
+
+    console.log('Enrollment Form Data:');
+    for (let [key, value] of formData.entries()) {
+        console.log(`${key}: ${value}`);
+    }
+
+    // Show loading state
+    const submitBtn = this.querySelector('button[type="submit"]');
+    const originalText = submitBtn.textContent;
+    submitBtn.textContent = 'Processing...';
+    submitBtn.disabled = true;
+
+    // Send to Django backend
+    fetch(this.action, {
+        method: 'POST',
+        body: formData,
+        headers: {
+            'X-Requested-With': 'XMLHttpRequest',
+            'X-CSRFToken': getCSRFToken() // Add this function if not exists
+        }
+    })
+    .then(response => {
+        console.log('Response status:', response.status);
+        return response.json();
+    })
+    .then(data => {
+        console.log('Response data:', data);
+        if (data.success) {
+            // Success - show message and reset
+            enrollmentForm.style.display = 'none';
+            enrollmentSuccessMessage.style.display = 'block';
+
+            setTimeout(function() {
+                enrollmentForm.reset();
+                enrollmentForm.style.display = 'block';
+                enrollmentSuccessMessage.style.display = 'none';
+                closeEnrollmentModal();
+                
+                // Clear localStorage on successful submission
+                localStorage.removeItem('enrollmentFormData');
+            }, 3000);
+        } else {
+            // Show errors
+            alert('Please check the form: ' + JSON.stringify(data.errors));
+        }
+    })
+    .catch(error => {
+        console.error('Fetch error:', error);
+        alert('Network error. Please check your connection and try again.');
+    })
+    .finally(() => {
+        submitBtn.textContent = originalText;
+        submitBtn.disabled = false;
+    });
+});
+
+// Add CSRF token function if not exists
+function getCSRFToken() {
+    const csrfToken = document.querySelector('[name=csrfmiddlewaretoken]');
+    return csrfToken ? csrfToken.value : '';
+}
 });
 
 
@@ -376,20 +424,61 @@ document.addEventListener('DOMContentLoaded', function() {
             });
 
             // Form submission
+            // Working Trial Form Submission
             trialForm.addEventListener('submit', function(e) {
                 e.preventDefault();
 
-                // Hide form and show success message
-                trialForm.style.display = 'none';
-                successMessage.style.display = 'block';
+                // Debug: see what data is being collected
+                const formData = new FormData(this);
+                console.log('Trial Form Data:');
+                for (let [key, value] of formData.entries()) {
+                    console.log(`${key}: ${value}`);
+                }
 
-                // Reset form after 3 seconds and close modal
-                setTimeout(function() {
-                    trialForm.reset();
-                    trialForm.style.display = 'block';
-                    successMessage.style.display = 'none';
-                    closeTrialModal();
-                }, 3000);
+                // Show loading state
+                const submitBtn = this.querySelector('button[type="submit"]');
+                const originalText = submitBtn.textContent;
+                submitBtn.textContent = 'Booking...';
+                submitBtn.disabled = true;
+
+                // Send to Django backend
+                fetch(this.action, {
+                    method: 'POST',
+                    body: formData,
+                    headers: {
+                        'X-Requested-With': 'XMLHttpRequest'
+                    }
+                })
+                .then(response => {
+                    console.log('Response status:', response.status);
+                    return response.json();
+                })
+                .then(data => {
+                    console.log('Response data:', data);
+                    if (data.success) {
+                        // Success - show message and reset
+                        trialForm.style.display = 'none';
+                        successMessage.style.display = 'block';
+
+                        setTimeout(function() {
+                            trialForm.reset();
+                            trialForm.style.display = 'block';
+                            successMessage.style.display = 'none';
+                            closeTrialModal();
+                        }, 3000);
+                    } else {
+                        // Show errors
+                        alert('Please check the form: ' + JSON.stringify(data.errors));
+                    }
+                })
+                .catch(error => {
+                    console.error('Fetch error:', error);
+                    alert('Network error. Please check your connection and try again.');
+                })
+                .finally(() => {
+                    submitBtn.textContent = originalText;
+                    submitBtn.disabled = false;
+                });
             });
         });
 
@@ -755,4 +844,204 @@ document.addEventListener("DOMContentLoaded", function () {
     // Initial load
     applyFilter("all");
 });
+// ---------- Bank account details ----------
+const accounts = {
+  "JazzCash": { name: "Learn & Grow Digital", number: "0300-1111111" },
+  "NayaPay": { name: "Learn & Grow Digital", number: "9876-543210" },
+  "Payoneer": { name: "Learn & Grow Digital", number: "payoneer@email.com" }
+};
 
+function copyAccountNumber() {
+  const text = document.getElementById("accountNumber").textContent;
+  navigator.clipboard.writeText(text);
+  alert("Account number copied!");
+}
+
+// ---------- Fee + Duration update ----------
+function findPriceDisplay(plan, classes) {
+  return document.querySelector(`.pricing-item[data-plan="${plan}"][data-classes="${classes}"]`);
+}
+
+function updateFeeAndDuration() {
+  const selectedPlanEl = document.querySelector("input[name='plan']:checked");
+  const classesSelect = document.getElementById("classesPerWeek");
+  const classes = classesSelect ? classesSelect.value : null;
+  const feeInput = document.getElementById("calculatedFee");
+  const durationInput = document.getElementById("classDuration");
+
+  console.log("updateFeeAndDuration called", { 
+    selectedPlan: selectedPlanEl?.value, 
+    classes: classes 
+  });
+
+  if (!selectedPlanEl || !classes) {
+    if (feeInput) {
+      feeInput.value = "(Auto-calculated)";
+      feeInput.style.color = "#999"; // Gray color for placeholder
+    }
+    if (durationInput) {
+      durationInput.value = "(Auto-set by plan)";
+      durationInput.style.color = "#999";
+    }
+    return;
+  }
+
+  const plan = selectedPlanEl.value;
+
+  // Duration
+  if (durationInput) {
+    durationInput.value = plan === "prime" ? "45 minutes" : "60 minutes";
+   // durationInput.style.color = "#000"; // Black color for actual value
+  }
+
+  // Fee
+  const pricingRow = findPriceDisplay(plan, classes);
+  console.log("Pricing row found:", pricingRow);
+  
+  if (!pricingRow) {
+    if (feeInput) {
+      feeInput.value = "Not available";
+      feeInput.style.color = "#ff0000"; // Red color for error
+    }
+    return;
+  }
+
+  // Get the display price
+ let display = pricingRow.getAttribute("data-display") || 
+                  pricingRow.dataset.display || 
+                  "Price not found";
+  
+  console.log("Display price:", display);
+  display = display.replace(/\s+/g, ' ').trim();
+
+  
+  if (feeInput) {
+    feeInput.value = display;
+   // feeInput.style.color = "#000"; // Black color for actual value
+    
+    // Force a DOM update - multiple methods
+    feeInput.dispatchEvent(new Event('input', { bubbles: true }));
+    feeInput.dispatchEvent(new Event('change', { bubbles: true }));
+    
+    console.log("Fee input value set to:", feeInput.value);
+  }
+}
+
+// ---------- Auto-save form ----------
+const form = document.getElementById("enrollmentForm");
+const formKey = "enrollmentFormData";
+
+// Save form data to localStorage
+if (form) {
+  form.addEventListener("input", () => {
+    const formData = new FormData(form);
+    let obj = {};
+    formData.forEach((value, key) => {
+      if (obj[key]) {
+        if (!Array.isArray(obj[key])) obj[key] = [obj[key]];
+        obj[key].push(value);
+      } else {
+        obj[key] = value;
+      }
+    });
+        // Manually add preferred_days checkboxes
+    const preferredDaysCheckboxes = form.querySelectorAll('input[name="preferred_days"]:checked');
+    if (preferredDaysCheckboxes.length > 0) {
+      obj['preferred_days'] = Array.from(preferredDaysCheckboxes).map(cb => cb.value);
+    }
+    localStorage.setItem(formKey, JSON.stringify(obj));
+  });
+}
+
+// ---------- Initialize everything when DOM is loaded ----------
+document.addEventListener("DOMContentLoaded", function() {
+  console.log("DOM loaded - initializing enrollment form");
+  
+  const planInputs = document.querySelectorAll("input[name='plan']");
+  const classesSelect = document.getElementById("classesPerWeek");
+  const bankBox = document.getElementById("bankDetails");
+  const accountName = document.getElementById("accountName");
+  const accountNumber = document.getElementById("accountNumber");
+  const paymentRadios = document.querySelectorAll('input[name="payment_method"]');
+
+  // Restore saved data
+// Restore saved data
+const saved = localStorage.getItem(formKey);
+if (saved && form) {
+  const obj = JSON.parse(saved);
+  for (let key in obj) {
+    const field = form.elements[key];
+    if (!field) continue;
+
+    if (field.type === "radio") {
+      const input = form.querySelector(`[name="${key}"][value="${obj[key]}"]`);
+      if (input) input.checked = true;
+    } else if (field.type === "checkbox") {
+      // Handle checkbox arrays (like preferred_days)
+      if (Array.isArray(obj[key])) {
+        obj[key].forEach(value => {
+          const input = form.querySelector(`[name="${key}"][value="${value}"]`);
+          if (input) input.checked = true;
+        });
+      } else {
+        const input = form.querySelector(`[name="${key}"][value="${obj[key]}"]`);
+        if (input) input.checked = true;
+      }
+    } else if (field.type === "file") {
+      continue; // skip files
+    } else if (field.length && field[0].tagName === "OPTION") {
+      [...field.options].forEach(opt => {
+        if (opt.value == obj[key]) opt.selected = true;
+      });
+    } else {
+      field.value = obj[key];
+    }
+  }
+}
+
+  // Wire listeners for fee calculation
+  if (planInputs) {
+    planInputs.forEach(radio => {
+      radio.addEventListener("change", updateFeeAndDuration);
+    });
+  }
+
+  if (classesSelect) {
+    classesSelect.addEventListener("change", updateFeeAndDuration);
+  }
+
+  // ---------- Payment details ----------
+  if (paymentRadios) {
+    paymentRadios.forEach(radio => {
+      radio.addEventListener("change", function () {
+        const selected = accounts[this.value];
+        if (selected) {
+          accountName.textContent = selected.name;
+          accountNumber.textContent = selected.number;
+          bankBox.style.display = "block";
+        }
+      });
+    });
+  }
+
+  // If saved payment was selected, trigger its change
+  const selectedPayment = form ? form.querySelector('input[name="payment_method"]:checked') : null;
+  if (selectedPayment) selectedPayment.dispatchEvent(new Event("change"));
+
+  // Run fee/duration calculation on initial load
+  setTimeout(updateFeeAndDuration, 100);
+});
+
+// Clear storage on submit
+if (form) {
+  form.addEventListener("submit", () => {
+    localStorage.removeItem(formKey);
+  });
+}
+
+// Also add change listeners directly to the form elements as a backup
+document.addEventListener('change', function(e) {
+  if (e.target.name === 'plan' || e.target.id === 'classesPerWeek') {
+    updateFeeAndDuration();
+  }
+});

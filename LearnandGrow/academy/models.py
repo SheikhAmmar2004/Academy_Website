@@ -157,3 +157,82 @@ class Plan(models.Model):
 
     def __str__(self):
         return f"{self.get_name_display()} - {self.classes_per_week} classes/week"
+
+
+class Day(models.Model):
+    name = models.CharField(max_length=20, unique=True)
+    available_for_trial = models.BooleanField(default=True)
+    available_for_enrollment = models.BooleanField(default=True)
+    order = models.PositiveIntegerField(default=0)
+    
+    class Meta:
+        ordering = ['order']
+    
+    def __str__(self):
+        return self.name
+
+class TimeSlot(models.Model):
+    TIME_SLOT_TYPE_CHOICES = [
+        ('trial', 'Free Trial'),
+        ('enrollment', 'Full Enrollment'),
+        ('both', 'Both'),
+    ]
+    
+    time_range = models.CharField(max_length=20)  # e.g., "09:00-10:00"
+    slot_type = models.CharField(max_length=20, choices=TIME_SLOT_TYPE_CHOICES, default='both')
+    available = models.BooleanField(default=True)
+    order = models.PositiveIntegerField(default=0)
+    
+    class Meta:
+        ordering = ['order']
+        unique_together = ['time_range', 'slot_type']
+    
+    def __str__(self):
+        return f"{self.time_range} ({self.get_slot_type_display()})"
+
+
+class TrialFormSubmission(models.Model):
+    student_name = models.CharField(max_length=100)
+    student_age = models.PositiveIntegerField()
+    course = models.ForeignKey(Course, on_delete=models.SET_NULL, null=True, blank=True)
+    preferred_day = models.CharField(max_length=20)
+    preferred_time = models.CharField(max_length=50)
+    country = models.CharField(max_length=100)
+    contact_info = models.CharField(max_length=150)
+    submitted_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"Trial: {self.student_name} ({self.course})"
+
+
+class EnrollmentFormSubmission(models.Model):
+    student_name = models.CharField(max_length=100)
+    grade = models.CharField(max_length=50)
+    student_photo = models.ImageField(upload_to="student_photos/", blank=True, null=True)
+
+    course = models.ForeignKey(Course, on_delete=models.SET_NULL, null=True, blank=True)
+    plan = models.CharField(max_length=20, choices=[("prime", "Prime"), ("premier", "Premier")])
+    classes_per_week = models.PositiveSmallIntegerField()
+    class_duration = models.CharField(max_length=50, blank=True, null=True)
+    calculated_fee = models.CharField(max_length=50, blank=True, null=True)
+
+    preferred_days = models.TextField(help_text="Comma-separated preferred days")
+    preferred_time_slot = models.CharField(max_length=50)
+
+    parent_name = models.CharField(max_length=100)
+    parent_contact = models.CharField(max_length=50)
+    parent_email = models.EmailField()
+
+    payment_method = models.CharField(max_length=20, choices=[
+        ("JazzCash", "JazzCash"),
+        ("NayaPay", "NayaPay"),
+        ("Payoneer", "Payoneer"),
+    ])
+    transaction_id = models.CharField(max_length=100, blank=True, null=True)
+    payment_screenshot = models.ImageField(upload_to="payment_screenshots/", blank=True, null=True)
+
+    special_notes = models.TextField(blank=True, null=True)
+    submitted_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"Enrollment: {self.student_name} ({self.course})"
