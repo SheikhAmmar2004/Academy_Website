@@ -1146,3 +1146,68 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 });
+// JavaScript to handle read more/less functionality
+document.addEventListener('DOMContentLoaded', function() {
+    const testimonialCards = document.querySelectorAll('.testimonial-card');
+    
+    testimonialCards.forEach(card => {
+        const textContainer = card.querySelector('.testimonial-text-container');
+        const textElement = card.querySelector('.testimonial-text');
+        const readMoreBtn = card.querySelector('.read-more-btn');
+        
+        // Calculate if text exceeds 3 lines
+        const lineHeight = parseFloat(getComputedStyle(textElement).lineHeight);
+        const maxHeight = lineHeight * 2;
+        const textHeight = textElement.scrollHeight;
+        
+        if (textHeight > maxHeight) {
+            // Text is long, add collapsed class and show button
+            textContainer.classList.add('collapsed');
+            readMoreBtn.style.display = 'block';
+            
+            // Add click event to toggle
+            readMoreBtn.addEventListener('click', function() {
+                const isExpanded = textContainer.classList.contains('expanded');
+                
+                if (isExpanded) {
+                    // Collapse
+                    textContainer.classList.remove('expanded');
+                    textContainer.classList.add('collapsed');
+                    readMoreBtn.textContent = 'Read more';
+                    readMoreBtn.setAttribute('aria-expanded', 'false');
+                } else {
+                    // Expand
+                    textContainer.classList.remove('collapsed');
+                    textContainer.classList.add('expanded');
+                    readMoreBtn.textContent = 'Read less';
+                    readMoreBtn.setAttribute('aria-expanded', 'true');
+                }
+            });
+        } else {
+            // Text is short, hide button
+            card.classList.add('short-review');
+        }
+    });
+    
+    // Update on window resize
+    window.addEventListener('resize', function() {
+        testimonialCards.forEach(card => {
+            if (card.classList.contains('short-review')) {
+                const textElement = card.querySelector('.testimonial-text');
+                const lineHeight = parseFloat(getComputedStyle(textElement).lineHeight);
+                const maxHeight = lineHeight * 2;
+                const textHeight = textElement.scrollHeight;
+                
+                if (textHeight > maxHeight) {
+                    // Text now exceeds 3 lines, show button
+                    card.classList.remove('short-review');
+                    const textContainer = card.querySelector('.testimonial-text-container');
+                    const readMoreBtn = card.querySelector('.read-more-btn');
+                    
+                    textContainer.classList.add('collapsed');
+                    readMoreBtn.style.display = 'block';
+                }
+            }
+        });
+    });
+});

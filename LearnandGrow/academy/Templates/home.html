@@ -395,46 +395,51 @@
             </div>
     </section>
     <!-- Reviews Section -->
-    <section class="reviews" id="reviews">
-        <div class="reviews-container">
+<section class="reviews" id="reviews">
+    <div class="reviews-container">
+        <div class="reviews-header">
+            <h2 class="reviews-title">What Our Students Say</h2>
+            <p class="reviews-subtitle">Here's what our young learners and their parents love about Learn & Grow Digital</p>
+        </div>
 
-            <div class="reviews-header">
-                <h2 class="reviews-title">What Our Students Say</h2>
-                <p class="reviews-subtitle">Here's what our young learners and their parents love about Learn & Grow Digital</p>
-            </div>
-
-   <!-- Swiper Carousel Start -->
-    <div class="swiper reviewsSwiper">
-        <div class="swiper-wrapper">
-            {% for review in reviews %}
-            <div class="swiper-slide">
-                <div class="testimonial-card">
-                    <p class="testimonial-text">
-                        "{{ review.text }}"
-                    </p>
-                    <div class="testimonial-user">
-                        {% if review.image %}
-                        <img src="{{ review.image.url }}" alt="{{ review.author }} Photo">
-                        {% else %}
-                        <img src="{% static 'images/default-user.png' %}" alt="Default User Photo">
-                        {% endif %}
-                        <div class="user-info">
-                            <h4>{{ review.author }}{% if review.age %}, Age {{ review.age }}{% endif %}</h4>
-                            {% if review.role %}<span>{{ review.role }}</span>{% endif %}
+        <!-- Swiper Carousel Start -->
+        <div class="swiper reviewsSwiper">
+            <div class="swiper-wrapper">
+                {% for review in reviews %}
+                <div class="swiper-slide">
+                    <div class="testimonial-card">
+                        <div class="testimonial-text-container">
+                            <p class="testimonial-text">
+                                "{{ review.text }}"
+                            </p>
+                        </div>
+                        <div class="read-more-container">
+                            <button class="read-more-btn" aria-expanded="false">Read more</button>
+                        </div>
+                        <div class="testimonial-user">
+                            {% if review.image %}
+                            <img src="{{ review.image.url }}" alt="{{ review.author }} Photo">
+                            {% else %}
+                            <img src="{% static 'images/default-user.png' %}" alt="Default User Photo">
+                            {% endif %}
+                            <div class="user-info">
+                                <h4>{{ review.author }}{% if review.age %}, Age {{ review.age }}{% endif %}</h4>
+                                {% if review.role %}<span>{{ review.role }}</span>{% endif %}
+                            </div>
                         </div>
                     </div>
                 </div>
+                {% endfor %}
             </div>
-            {% endfor %}
-        </div>
-        <!-- Pagination -->
-        <div class="reviews-pagination"></div>
+            <!-- Pagination -->
+            <div class="reviews-pagination"></div>
             <div class="courses-decor">
                 <div class="course-decoration decoration-22"></div>
                 <div class="course-decoration decoration-23"></div>
             </div>
+        </div>
     </div>
-    </section>
+</section>
     <!-- Teachers Section -->
     <section class="Team" id="team">
     <div class="Team-container">
