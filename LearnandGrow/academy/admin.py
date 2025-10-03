@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Course, Teacher, Review, Project, StudentProject, FAQ, CourseCategory,Plan, Day, TimeSlot,TrialFormSubmission,EnrollmentFormSubmission
+from .models import Course, Teacher, Review, Project, StudentProject, FAQ, CourseCategory,Plan, Day, TimeSlot,TrialFormSubmission,EnrollmentFormSubmission, Feedback
 
 
 
@@ -137,6 +137,26 @@ class EnrollmentFormSubmissionAdmin(admin.ModelAdmin):
         return "No days selected"
     display_preferred_days.short_description = 'Preferred Days'
 
+
+class FeedbackAdmin(admin.ModelAdmin):
+    list_display = ['name', 'age', 'role', 'country', 'submitted_at']
+    list_filter = ['submitted_at', 'role', 'country']
+    search_fields = ['name', 'feedback_message']
+    readonly_fields = [f.name for f in Feedback._meta.fields if f.name != 'picture']
+    
+    # Remove actions dropdown
+    actions = None
+    
+    # Permissions: NO ADD, NO EDIT, YES DELETE
+    def has_add_permission(self, request):
+        return False
+    
+    def has_change_permission(self, request, obj=None):
+        return False
+    
+    def has_delete_permission(self, request, obj=None):
+        return True
+
 admin.site.register(Plan, PlanAdmin)
 admin.site.register(CourseCategory, CourseCategoryAdmin)
 admin.site.register(Course, CourseAdmin)
@@ -150,3 +170,4 @@ admin.site.register(TimeSlot, TimeSlotAdmin)
 # Register form submissions with read-only admin
 admin.site.register(TrialFormSubmission, TrialFormSubmissionAdmin)
 admin.site.register(EnrollmentFormSubmission, EnrollmentFormSubmissionAdmin)
+admin.site.register(Feedback, FeedbackAdmin)

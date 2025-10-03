@@ -1,9 +1,9 @@
 from django.shortcuts import render
 from django.db import models
-from .models import Course, Teacher, Review, StudentProject, FAQ, Plan, Day, TimeSlot
+from .models import Course, Teacher, Review, StudentProject, FAQ, Plan, Day, TimeSlot, Feedback
 import requests
 from django.core.cache import cache
-from .forms import TrialForm, EnrollmentForm
+from .forms import TrialForm, EnrollmentForm, FeedbackForm
 from django.http import JsonResponse
 from django.core.mail import send_mail
 from django.conf import settings
@@ -42,6 +42,8 @@ def home(request):
     featured_reviews = Review.objects.filter(featured=True).order_by('-created_at')[:6]
     featured_student_projects = StudentProject.objects.filter(approved=True).order_by('order')[:12]
     faqs = FAQ.objects.all()
+    feedback_form = FeedbackForm()
+
     
     # Get country and plans
     country = get_user_country(request)
@@ -126,6 +128,8 @@ def home(request):
         'trial_times': trial_times,
         'enrollment_days': enrollment_days,
         'enrollment_times': enrollment_times,
+        'feedback_form': feedback_form,
+
     }
     return render(request, 'home.html', context)
 
@@ -229,4 +233,30 @@ def submit_enrollment(request):
         else:
             print(f"Enrollment form errors: {form.errors}")  # Debug print
             return JsonResponse({"success": False, "errors": form.errors})
+    return JsonResponse({"success": False, "errors": "Invalid request method"})
+
+    
+def submit_feedback(request):
+    if request.method == "POST":
+        form = FeedbackForm(request.POST, request.FILES)
+        if form.is_valid():
+            feedback = form.save()
+            
+            # Send notification to admin
+            send_mail(
+                subject="📝 New Feedback Submission",
+                message=f"A new feedback was submitted:\n\n"
+                        f"Name: {feedback.name}\n"
+                        f"Age: {feedback.age}\n"
+                        f"Role: {feedback.role}\n"
+                        f"Country: {feedback.country}\n"
+                        f"Feedback: {feedback.feedback_message}\n\n"
+                        f"Check admin panel for full details.",
+                from_email=settings.DEFAULT_FROM_EMAIL,
+                recipient_list=[settings.ADMIN_EMAIL],
+                fail_silently=True,
+            )
+            
+            return JsonResponse({"success": True})
+        return JsonResponse({"success": False, "errors": form.errors})
     return JsonResponse({"success": False, "errors": "Invalid request method"})

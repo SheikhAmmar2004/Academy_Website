@@ -1045,3 +1045,104 @@ document.addEventListener('change', function(e) {
     updateFeeAndDuration();
   }
 });
+// Feedback Modal functionality
+document.addEventListener('DOMContentLoaded', function() {
+    const feedbackModal = document.getElementById('feedbackModal');
+    const openFeedbackBtn = document.getElementById('openFeedback');
+    const closeFeedbackBtn = document.getElementById('closeFeedbackModal');
+    const feedbackForm = document.getElementById('feedbackForm');
+    const feedbackSuccessMessage = document.getElementById('feedbackSuccessMessage');
+    const uploadInput = document.getElementById('feedbackPictureUpload');
+    const uploadPreview = document.getElementById('feedbackUploadPreview');
+    const uploadContainer = document.getElementById('feedbackUploadContainer');
+    
+    // Open feedback modal
+    if (openFeedbackBtn) {
+        openFeedbackBtn.addEventListener('click', function() {
+            feedbackModal.classList.add('active');
+        });
+    }
+    
+    // Close feedback modal
+    if (closeFeedbackBtn) {
+        closeFeedbackBtn.addEventListener('click', function() {
+            feedbackModal.classList.remove('active');
+        });
+    }
+    
+    // Close modal when clicking outside
+    window.addEventListener('click', function(event) {
+        if (event.target === feedbackModal) {
+            feedbackModal.classList.remove('active');
+        }
+    });
+    
+    // Handle form submission
+    if (feedbackForm) {
+        feedbackForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const formData = new FormData(this);
+            
+            fetch(this.action, {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'X-Requested-With': 'XMLHttpRequest',
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    // Show success message
+                    feedbackForm.style.display = 'none';
+                    feedbackSuccessMessage.style.display = 'block';
+                    
+                    // Reset form after 3 seconds and close modal
+                    setTimeout(function() {
+                        feedbackForm.reset();
+                        feedbackForm.style.display = 'block';
+                        feedbackSuccessMessage.style.display = 'none';
+                        feedbackModal.classList.remove('active');
+                        uploadPreview.style.display = 'none';
+                    }, 3000);
+                } else {
+                    alert('There was an error submitting your feedback. Please try again.');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('There was an error submitting your feedback. Please try again.');
+            });
+        });
+    }
+    
+    // Handle image preview
+    if (uploadInput) {
+        uploadInput.addEventListener('change', function() {
+            const file = this.files[0];
+            if (file) {
+                // Validate file type
+                if (!file.type.startsWith('image/')) {
+                    alert('Please select an image file.');
+                    this.value = '';
+                    return;
+                }
+                
+                // Validate file size (max 5MB)
+                if (file.size > 5 * 1024 * 1024) {
+                    alert('Please select an image smaller than 5MB.');
+                    this.value = '';
+                    return;
+                }
+                
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    uploadPreview.src = e.target.result;
+                    uploadPreview.style.display = 'block';
+                }
+                reader.readAsDataURL(file);
+            }
+        });
+    }
+});

@@ -4,10 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Learn & Grow Digital Academy helps kids and beginners explore coding, game development, and app creation in a fun and easy way. Join our interactive courses to start your digital journey today!">
+    <meta name="description" content="Learn & Grow Digital Academy makes coding, game development, and app creation fun for kids & teens. Start your journey with interactive courses and enjoy a free trial today!">
     <meta name="keywords" content="Learn & Grow Digital, coding for kids, coding for beginners, game development, app creation, online coding courses, digital skills, programming for kids, coding academy, Learn & Grow Digital Academy">
-    <title>Learn & Grow Digital - Pakistan's First Digital Academy For Kids & Teens</title>
-
+    <title>Learn & Grow Digital | Coding & Game Dev for Kids & Teens</title>
+    
     <!-- ✅ Preload critical CSS then load -->
     <link rel="preload" href="{% static 'css/styles.css' %}" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <noscript><link rel="stylesheet" href="{% static 'css/styles.css' %}"></noscript>
@@ -26,7 +26,7 @@
     <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"></noscript>
 
     <!-- Favicon -->
-    <link rel="icon" href="{% static 'images/favicon.png' %}" type="image/x-icon">
+    <link rel="icon" href="{% static 'images/logo.webp' %}" type="image/x-icon">
 </head>
 
 <body>
@@ -37,7 +37,7 @@
             <div class="nav-logo">
                 <div class="logo-icon">
                       <a href="#" onclick="window.location.reload(); return false;">
-                    <img src="{% static 'images/dolphin.png' %}" alt="Learn & Grow Logo" class="logo-img" />
+                    <img src="{% static 'images/logo.webp' %}" alt="Learn & Grow Logo" class="logo-img" />
                     </a>
                 </div>
                 <span class="logo-text">Learn & Grow Digital</span>
@@ -691,7 +691,7 @@
     
     <!-- Logo & About -->
     <div class="footer-section footer-logo">
-      <img src="{% static 'images/dolphin.png' %}" alt="Learn & Grow Digital Logo" class="footer-logo-img">
+      <img src="{% static 'images/logo.webp' %}" alt="Learn & Grow Digital Logo" class="footer-logo-img">
       <h3>Learn & Grow Digital</h3>
       <p>Empowering kids through coding, creativity & digital skills.</p>
       <p class="highlight"><strong>Trusted by parents – Certificates awarded on every course completion!</strong></p>
@@ -712,11 +712,8 @@
     <div class="footer-section">
       <h4>Resources</h4>
       <ul>
-        <li><a href="#parents"><i class="fas fa-chevron-right"></i> Parent Guide</a></li>
-        <li><a href="#trial"><i class="fas fa-chevron-right"></i> Free Trial</a></li>
-        <li><a href="#feedback"><i class="fas fa-chevron-right"></i> Feedback</a></li>
-        <li><a href="#blog"><i class="fas fa-chevron-right"></i> Blog</a></li>
-      </ul>
+        <li><a href="#"onclick="openTrialModal()"><i class="fas fa-chevron-right"></i> Free Trial</a></li>
+        <li><a href="#feedback" id="openFeedback"><i class="fas fa-chevron-right"></i> Feedback</a></li>      </ul>
     </div>
 
     <!-- Contact & Social -->
@@ -1093,6 +1090,78 @@
             </div>
         </div>
     </div>
+    </div>
+<!-- Feedback Modal -->
+    <div id="feedbackModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">Share Your Feedback</h2>
+    <button id="closeFeedbackModal" class="modal-close">&times;</button>
+            </div>
+            
+            <form id="feedbackForm" method="post" action="{% url 'submit_feedback' %}" enctype="multipart/form-data">
+                {% csrf_token %}
+                
+                <!-- Row 1: Name + Age -->
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label" for="feedbackName">Your Name</label>
+                        <input type="text" class="form-input" id="feedbackName" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="feedbackAge">Your Age</label>
+                        <input type="number" class="form-input" id="feedbackAge" name="age" min="1" max="100" placeholder="Enter your age" required>
+                    </div>
+                </div>
+
+                <!-- Row 2: Role + Country -->
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label">You are a</label>
+                        <div class="form-options">
+                            <label>
+                                <input type="radio" name="role" value="parent" required>
+                                Parent
+                            </label>
+                            <label>
+                                <input type="radio" name="role" value="student">
+                                Student
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="feedbackCountry">Country</label>
+                        <input type="text" class="form-input" id="feedbackCountry" name="country" placeholder="Enter your country" required>
+                    </div>
+                </div>
+
+                <!-- Row 3: Upload Picture -->
+                <div class="form-group">
+                    <label class="form-label">Upload Your Picture (Optional)</label>
+                    <div class="upload-box" id="feedbackUploadContainer">
+                        <input type="file" class="upload-input" id="feedbackPictureUpload" name="picture" accept="image/*">
+                        <div class="upload-icon">📷</div>
+                        <div class="upload-text">Click to upload your picture</div>
+                        <img id="feedbackUploadPreview" class="upload-preview" src="" alt="Preview">
+                    </div>
+                </div>
+
+                <!-- Row 4: Feedback Message -->
+                <div class="form-group">
+                    <label class="form-label" for="feedbackMessage">Your Feedback</label>
+                    <textarea class="form-textarea" id="feedbackMessage" name="feedback_message" placeholder="Please share your experience, suggestions, or any thoughts you have..." required></textarea>
+                </div>
+
+                <!-- Submit -->
+                <button type="submit" class="form-submit">Submit Feedback</button>
+            </form>
+            
+            <!-- Success Message -->
+            <div id="feedbackSuccessMessage" class="success-message">
+                <div class="success-icon">✓</div>
+                <p class="success-text">Thank you for your valuable feedback! We appreciate you taking the time to share your thoughts with us.</p>
+            </div>
+        </div>
     </div>
     <!-- WhatsApp Floating Button -->
     <div class="floating-whatsapp">
