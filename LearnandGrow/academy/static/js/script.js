@@ -1,40 +1,123 @@
-// Mobile Menu Toggle
+// Mobile Menu Toggle with smooth animations
 function toggleMobileMenu() {
     const mobileMenu = document.getElementById('mobileMenu');
     const menuBtn = document.querySelector('.mobile-menu-btn');
+    const body = document.body;
     
-    mobileMenu.classList.toggle('active');
-    menuBtn.classList.toggle('active');
+    const isOpening = !mobileMenu.classList.contains('active');
     
-    // Animate hamburger menu
-    const hamburgers = menuBtn.querySelectorAll('.hamburger');
-    if (mobileMenu.classList.contains('active')) {
-        hamburgers[0].style.transform = 'rotate(45deg) translate(5px, 5px)';
-        hamburgers[1].style.opacity = '0';
-        hamburgers[2].style.transform = 'rotate(-45deg) translate(7px, -6px)';
+    if (isOpening) {
+        // Opening animation
+        openMobileMenu();
     } else {
-        hamburgers[0].style.transform = 'none';
-        hamburgers[1].style.opacity = '1';
-        hamburgers[2].style.transform = 'none';
+        // Closing animation
+        closeMobileMenu();
+    }
+}
+
+// Function to open mobile menu with animations
+function openMobileMenu() {
+    const mobileMenu = document.getElementById('mobileMenu');
+    const menuBtn = document.querySelector('.mobile-menu-btn');
+    const body = document.body;
+    
+    // Add active classes
+    mobileMenu.classList.add('active');
+    menuBtn.classList.add('active');
+    body.classList.add('mobile-menu-open');
+    
+    // Create backdrop if it doesn't exist
+    let backdrop = document.querySelector('.mobile-menu-backdrop');
+    if (!backdrop) {
+        backdrop = document.createElement('div');
+        backdrop.className = 'mobile-menu-backdrop';
+        document.body.appendChild(backdrop);
+        
+        // Close menu when backdrop is clicked
+        backdrop.addEventListener('click', closeMobileMenu);
+    }
+    backdrop.classList.add('active');
+}
+
+// Function to close the menu with animation
+function closeMobileMenu() {
+    const mobileMenu = document.getElementById('mobileMenu');
+    const menuBtn = document.querySelector('.mobile-menu-btn');
+    const body = document.body;
+    const backdrop = document.querySelector('.mobile-menu-backdrop');
+    
+    // Remove active classes for closing animation
+    mobileMenu.classList.remove('active');
+    menuBtn.classList.remove('active');
+    body.classList.remove('mobile-menu-open');
+    
+    if (backdrop) {
+        backdrop.classList.remove('active');
+        
+        // Remove backdrop after animation completes
+        setTimeout(() => {
+            if (!mobileMenu.classList.contains('active') && backdrop.parentNode) {
+                backdrop.parentNode.removeChild(backdrop);
+            }
+        }, 300);
     }
 }
 
 // Close mobile menu when clicking on a link
 document.querySelectorAll('.mobile-nav-link').forEach(link => {
-    link.addEventListener('click', () => {
-        const mobileMenu = document.getElementById('mobileMenu');
-        const menuBtn = document.querySelector('.mobile-menu-btn');
-        
-        mobileMenu.classList.remove('active');
-        menuBtn.classList.remove('active');
-        
-        // Reset hamburger menu
-        const hamburgers = menuBtn.querySelectorAll('.hamburger');
-        hamburgers[0].style.transform = 'none';
-        hamburgers[1].style.opacity = '1';
-        hamburgers[2].style.transform = 'none';
+    link.addEventListener('click', function(e) {
+        // Add a small delay to let the click complete before closing
+        setTimeout(() => {
+            closeMobileMenu();
+        }, 200);
     });
 });
+
+// Close mobile menu when clicking on mobile trial button
+document.querySelector('.btn-trial.mobile').addEventListener('click', function(e) {
+    setTimeout(() => {
+        closeMobileMenu();
+    }, 100);
+});
+
+// Close mobile menu when clicking outside it
+document.addEventListener('click', (event) => {
+    const mobileMenu = document.getElementById('mobileMenu');
+    const menuBtn = document.querySelector('.mobile-menu-btn');
+    
+    if (mobileMenu.classList.contains('active')) {
+        if (!mobileMenu.contains(event.target) && !menuBtn.contains(event.target)) {
+            closeMobileMenu();
+        }
+    }
+});
+
+// Close mobile menu with Escape key
+document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape') {
+        const mobileMenu = document.getElementById('mobileMenu');
+        if (mobileMenu.classList.contains('active')) {
+            closeMobileMenu();
+        }
+    }
+});
+
+// Close mobile menu when window is resized to desktop size
+window.addEventListener('resize', () => {
+    if (window.innerWidth > 768) {
+        closeMobileMenu();
+    }
+});
+
+// Prevent body scroll when mobile menu is open (touch devices)
+document.addEventListener('touchmove', (event) => {
+    const mobileMenu = document.getElementById('mobileMenu');
+    if (mobileMenu.classList.contains('active')) {
+        event.preventDefault();
+    }
+}, { passive: false });
+
+
       const swiper = new Swiper(".myCoursesSwiper", {
         slidesPerView: 1,
         spaceBetween: 30,
@@ -214,7 +297,9 @@ document.addEventListener('DOMContentLoaded', function() {
     // Function to open enrollment modal
     function openEnrollmentModal(courseId = null) {
         enrollmentModal.classList.add('active');
+        document.body.classList.add('modal-open');
         document.body.style.overflow = 'hidden';
+        
 
         // Pre-select and lock course if courseId provided
         if (enrollmentCourseSelect) {
@@ -236,6 +321,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Function to close enrollment modal
     function closeEnrollmentModal() {
         enrollmentModal.classList.remove('active');
+        document.body.classList.remove('modal-open');
         document.body.style.overflow = '';
 
         // Reset course field
@@ -361,8 +447,8 @@ function getCSRFToken() {
 });
 
 
-        // Modal functionality
-        document.addEventListener('DOMContentLoaded', function() {
+// Modal functionality
+document.addEventListener('DOMContentLoaded', function() {
             const modal = document.getElementById('trialModal');
             const closeButton = document.getElementById('closeModal');
             const trialForm = document.getElementById('trialForm');
@@ -372,6 +458,7 @@ function getCSRFToken() {
             // Function to open modal
             function openTrialModal(courseId = null) {
                 modal.classList.add('active');
+                document.body.classList.add('modal-open');
                 document.body.style.overflow = 'hidden';
 
                 // Pre-select and lock course if courseId provided
@@ -394,6 +481,7 @@ function getCSRFToken() {
             // Function to close modal
             function closeTrialModal() {
                 modal.classList.remove('active');
+                document.body.classList.remove('modal-open');
                 document.body.style.overflow = '';
 
                 // Reset course field
@@ -480,7 +568,7 @@ function getCSRFToken() {
                     submitBtn.disabled = false;
                 });
             });
-        });
+});
 
 // Course Modal functionality
 document.addEventListener('DOMContentLoaded', function() {
@@ -645,6 +733,7 @@ function openCourseModal(courseData) {
 
     // Show modal
     courseModal.style.display = 'flex';
+    document.body.classList.add('modal-open');
     document.body.style.overflow = 'hidden';
     
     // Add active class for animation
@@ -656,6 +745,7 @@ function openCourseModal(courseData) {
     // Function to close course modal
     function closeCourseModalFunc() {
         courseModal.classList.remove('active');
+        document.body.classList.remove('modal-open');
         
         // Wait for animation to complete before hiding
         setTimeout(() => {
@@ -1060,6 +1150,8 @@ document.addEventListener('DOMContentLoaded', function() {
     if (openFeedbackBtn) {
         openFeedbackBtn.addEventListener('click', function() {
             feedbackModal.classList.add('active');
+            document.body.classList.add('modal-open');
+            document.body.style.overflow = 'hidden';
         });
     }
     
@@ -1067,6 +1159,8 @@ document.addEventListener('DOMContentLoaded', function() {
     if (closeFeedbackBtn) {
         closeFeedbackBtn.addEventListener('click', function() {
             feedbackModal.classList.remove('active');
+            document.body.classList.remove('modal-open');
+            document.body.style.overflow = '';
         });
     }
     
